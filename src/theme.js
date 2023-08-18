@@ -1,6 +1,6 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-const theme = createTheme({
+let theme = createTheme({
     breakpoints: {
         values: {
             xs: 0, // Extra small devices (portrait phones)
@@ -13,8 +13,31 @@ const theme = createTheme({
     palette: {
         text: {
             primary: "#BAAAA2",
+            secondary: "#bba590",
+            white: "white",
         },
+        background: "#E7D8D3",
     },
 });
+theme = responsiveFontSizes(theme);
+
+/* Mémo des variants typo */
+/* 
+
+    h1
+    h2
+    h3
+    h4
+    h5
+    h6
+    subtitle1
+    subtitle2
+    body1
+    body2
+    button
+    caption
+    overline
+
+*/
 
 export default theme;

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 // Routage
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 // Multilingue
 import i18n from "i18next";
@@ -10,12 +10,13 @@ import { I18nextProvider, initReactI18next } from "react-i18next";
 import enTranslation from "./locales/en.json";
 import frTranslation from "./locales/fr.json";
 
-// CSS
+// CSS & MUI
 import "./index.css";
+import theme from "./theme.js";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 // Componentes & Pages
 import App from "./App";
-import Page2 from "./pages/Page2.jsx";
 
 // Multilingue config
 i18n.use(initReactI18next).init({
@@ -27,8 +28,7 @@ i18n.use(initReactI18next).init({
             translation: frTranslation,
         },
     },
-    lng: "fr",
-    keySeparator: false,
+    fallbackLng: "fr",
     interpolation: {
         escapeValue: false,
     },
@@ -36,14 +36,13 @@ i18n.use(initReactI18next).init({
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
+    <BrowserRouter>
         <I18nextProvider i18n={i18n}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/page2" element={<Page2 />} />
-                </Routes>
-                <App />
-            </BrowserRouter>
+            <ThemeProvider theme={theme}>
+                <CssBaseline>
+                    <App />
+                </CssBaseline>
+            </ThemeProvider>
         </I18nextProvider>
-    </React.StrictMode>
+    </BrowserRouter>
 );

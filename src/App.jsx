@@ -1,29 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Routage
-import { NavLink } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-// Multilingue
-import { useTranslation } from "react-i18next";
-
-// Theme & Componentes MUI
-import theme from "./theme.js";
-import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
+// Componentes & Pages
+import Mariage from "./pages/Mariage";
+import Home from "./pages/Home";
 
 export default function App() {
-    const { t } = useTranslation();
+    // Permet le retour en haut de page
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline>
-                <>
-                    <h1>{t("welcome")}</h1>
-                    <NavLink to="/Page2">
-                        <Typography component="a" color="textPrimary">
-                            {"page2"}
-                        </Typography>
-                    </NavLink>
-                </>
-            </CssBaseline>
-        </ThemeProvider>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/mariage" element={<Mariage />} />
+        </Routes>
     );
 }

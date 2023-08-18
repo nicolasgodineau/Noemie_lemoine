@@ -1,4 +1,220 @@
 {
     "welcome": "Bienvenue sur notre site web !",
-    "about": "À propos de nous"
+    "about": "À propos de nous",
+    "name": "Noëmie",
+    "lastname": "Lemoine",
+    "job": "Make-up Artist",
+    "services": {
+        "title": "Mariage",
+        "subtitle": "Vivez votre mise en beauté comme un moment suspendu dans le temps...",
+        "intro": [
+            {
+                "element": "Depuis maintenant 10 ans, je vous accompagne avec soin à chaque étape de vos préparatifs jusqu'au jour J."
+            },
+            {
+                "element": "Mon rôle est de vous conseiller et de vous guider pour atteindre la mise en beauté parfaite."
+            }
+        ],
+        "steps": {
+            "subtitle": "Cette expérience se déroule en trois étapes essentielles :",
+            "list": [
+                {
+                    "title": "Première étape : Le rendez-vous",
+                    "description": "La première étape est un rendez-vous en visioconférence afin d’établir le premier contact, de comprendre vos habitudes puis ce que vous souhaitez pour le jour J."
+                },
+                {
+                    "title": "Deuxième étape : L'essai",
+                    "description": "La deuxième étape, l’essai, qui est simplement la mise en pratique de nos précédents échanges."
+                },
+                {
+                    "title": "Troisième étape : Le jour J",
+                    "description": "Et pour finir la troisième étape, le jour J, le moment le plus important pour vous. Il ne vous reste qu’à profiter de l’instant présent et de vous faire chouchouter."
+                }
+            ]
+        },
+        "description": [
+            {
+                "line": "Vivez votre mise en beauté comme un moment suspendu par le temps …"
+            },
+            {
+                "line": "Je prendrai soin de vous accompagner tout au long de vos préparatifs jusqu’au jour J."
+            },
+            {
+                "line": "Vos souhaits auront toutes mon attention et je serai ravie de vous conseiller, vous rassurer et vous orienter vers un style qui vous convienne."
+            },
+            {
+                "line": "Que ce soit une beauté au naturel, sophistiquée ou chic, je mettrai la lumière sur votre nature sublime."
+            },
+            {
+                "line": "Pour une association optimale, la mise en beauté peut être réalisée en duo avec une de mes partenaires coiffeuses*"
+            }
+        ],
+        "quote": {
+            "texte": "« Joie, vérité, amour. Les trois sont interchangeables et l’un mène toujours aux autres »",
+            "author": "~Neale Donald Walsch~"
+        },
+        "asterisk": "*sous réserves des disponibilités.",
+        "forfaits": [
+            {
+                "id": "N1",
+                "title": "Forfait maquillage",
+                "items": [
+                    {
+                        "element": "Analyse de style (30/45mn)"
+                    },
+                    {
+                        "element": "Conseils routine beauté"
+                    },
+                    {
+                        "element": "Échange régulier tout au long de l'année"
+                    },
+                    {
+                        "element": "Test maquillage (2h)"
+                    },
+                    {
+                        "element": "Mise en place du planning jour J"
+                    },
+                    {
+                        "element": "Maquillage jour J mariée** (1h15)"
+                    },
+                    {
+                        "element": "3 invitées (2h15)"
+                    }
+                ],
+                "bonus": {
+                    "title": "**Offert à la mariée le jour J:",
+                    "items": [
+                        {
+                            "element": "Rituel soin bonne mine jour J"
+                        },
+                        {
+                            "element": "Un échantillon de votre rouge à lèvres"
+                        }
+                    ]
+                },
+                "asterisk1": "*Un minimum de 4 maquillages invitées est demandé afin de bénéficier de ce forfait.",
+                "asterisk2": "** Prévoir également des frais de déplacement."
+            },
+            {
+                "id": "N2",
+                "title": "Forfait maquillage",
+                "items": [
+                    {
+                        "element": "Analyse de style (30/45mn)"
+                    },
+                    {
+                        "element": "Conseils routine beauté"
+                    },
+                    {
+                        "element": "Échange régulier tout au long de l'année"
+                    },
+                    {
+                        "element": "Test maquillage (2h)"
+                    },
+                    {
+                        "element": "Mise en place du planning jour J"
+                    },
+                    {
+                        "element": "Maquillage jour J mariée** (1h15)"
+                    },
+                    {
+                        "element": "5 invitées (3h30)"
+                    }
+                ],
+                "bonus": {
+                    "title": "**Offert à la mariée le jour J:",
+                    "items": [
+                        {
+                            "element": "Rituel soin bonne mine jour J"
+                        },
+                        {
+                            "element": "Un échantillon de votre rouge à lèvres"
+                        }
+                    ]
+                },
+                "asterisk1": "*Un minimum de 4 maquillages invitées est demandé afin de bénéficier de ce forfait.",
+                "asterisk2": "** Prévoir également des frais de déplacement."
+            },
+            {
+                "id": "N3",
+                "title": "Forfait maquillage & coiffure",
+                "items": [
+                    {
+                        "element": "Analyse de style (45mn/1h)"
+                    },
+                    {
+                        "element": "Conseils routine beauté"
+                    },
+                    {
+                        "element": "Échange régulier tout au long de l'année"
+                    },
+                    {
+                        "element": "Test maquillage & coiffure (3h - 4h)"
+                    },
+                    {
+                        "element": "Mise en place du planning jour J"
+                    },
+                    {
+                        "element": "Maquillage jour J mariée** (3h)"
+                    },
+                    {
+                        "element": "Pose d'ornements"
+                    }
+                ],
+                "bonus": {
+                    "title": "**Offert à la mariée le jour J:",
+                    "items": [
+                        {
+                            "element": "Rituel soin bonne mine jour J"
+                        },
+                        {
+                            "element": "Un échantillon de votre rouge à lèvres"
+                        }
+                    ]
+                },
+                "asterisk1": "*Forfait sous condition",
+                "asterisk2": "Uniquement valable si le style de coiffure recherché est comme celui des exemples suivants:"
+            }
+        ]
+    },
+    "menuNavigation": [
+        {
+            "label": "Accueil",
+            "url": "/"
+        },
+        {
+            "label": "Portfolio",
+            "url": "/portfolio"
+        },
+        {
+            "label": "Mariages",
+            "url": "/mariage"
+        },
+        {
+            "label": "About",
+            "url": "/about"
+        },
+        {
+            "label": "CV",
+            "url": "/cv"
+        },
+        {
+            "label": "Contact",
+            "url": "/contact"
+        }
+    ],
+    "menuSocial": [
+        {
+            "label": "Instagram",
+            "url": "www.google.com"
+        },
+        {
+            "label": "Facebook",
+            "url": "/"
+        },
+        {
+            "label": "LinkedIn",
+            "url": "/"
+        }
+    ]
 }
