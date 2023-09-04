@@ -10,11 +10,16 @@ export default function Portfolio() {
     );
 
     return (
-        <Container disableGutters={true} maxWidth={false}>
+        <Container
+            id="portfolio"
+            component="section"
+            disableGutters={true}
+            maxWidth="lg"
+        >
             {images.map((image, index) => (
                 <img
                     key={index}
-                    src={image} // L'utilisation de `.default` est nécessaire car `require` renvoie un objet module
+                    src={image}
                     alt={`Collage ${index + 1}`}
                     style={{ width: "100%" }}
                 />

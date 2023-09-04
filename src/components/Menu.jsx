@@ -1,41 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { Box, Container, Icon, Typography, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
-import Instagram from "@mui/icons-material/Instagram";
-import Facebook from "@mui/icons-material/Facebook";
-import LinkedIn from "@mui/icons-material/LinkedIn";
+import SocialMenu from "./SocialMenu.jsx";
+import ContactModal from "./ContactModal.jsx";
 
 export default function Menu({ position }) {
     const { t } = useTranslation();
     const theme = useTheme();
     const menuNavigation = t("menuNavigation", { returnObjects: true });
-    const menuSocial = t("menuSocial", { returnObjects: true });
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-    const iconsList = {
-        Instagram: <Instagram />,
-        Facebook: <Facebook />,
-        LinkedIn: <LinkedIn />,
+    const openModal = () => {
+        setIsContactModalOpen(true);
     };
 
+    const closeModal = () => {
+        setIsContactModalOpen(false);
+    };
     return (
         <Container
-            component="nav"
+            component="header"
             disableGutters={true}
             maxWidth={false}
             sx={{
                 width: "100%",
-                backgroundColor: theme.palette.text.white,
                 position: { position },
                 top: "0px",
                 paddingY: "0.5rem",
-                zIndex: "9999",
+                backgroundColor: theme.palette.background.default,
             }}
         >
             <Container
+                component="nav"
                 maxWidth="lg"
                 sx={{
                     display: "flex",
@@ -52,34 +51,7 @@ export default function Menu({ position }) {
                     }}
                 >
                     <Typography variant="h3">{t("name")}</Typography>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "baseline",
-                            justifyContent: "center",
-                            gap: ".5rem",
-                        }}
-                    >
-                        {menuSocial.map((menuItem, index) => (
-                            <Link
-                                key={index}
-                                href={menuItem.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                underline="none"
-                                sx={{
-                                    display: "inline-flex",
-                                    alignSelf: "center",
-                                }}
-                            >
-                                <Icon
-                                    sx={{ color: theme.palette.text.primary }}
-                                >
-                                    {iconsList[menuItem.label]}
-                                </Icon>
-                            </Link>
-                        ))}
-                    </Box>
+                    <SocialMenu gap=".5rem" />
                 </Box>
                 <Box
                     sx={{
@@ -91,7 +63,13 @@ export default function Menu({ position }) {
                     }}
                 >
                     {menuNavigation.map((menuItem, index) => (
-                        <NavLink key={index} to={menuItem.url}>
+                        <NavLink
+                            key={index}
+                            to={menuItem.url}
+                            onClick={
+                                menuItem.label === "Contact" ? openModal : null
+                            }
+                        >
                             <Typography
                                 component="a"
                                 variant="body"
@@ -102,6 +80,10 @@ export default function Menu({ position }) {
                             </Typography>
                         </NavLink>
                     ))}
+                    <ContactModal
+                        open={isContactModalOpen}
+                        onClose={closeModal}
+                    />
                 </Box>
             </Container>
         </Container>

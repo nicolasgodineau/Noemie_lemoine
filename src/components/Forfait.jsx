@@ -1,172 +1,173 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Multilingue
 import { useTranslation } from "react-i18next";
 
 import { useTheme } from "@mui/material/styles";
-import { Box, Container, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, Typography } from "@mui/material";
 
 import fleur from "../img/mariage/fleur.webp";
 
 export default function Forfait({ data, img, direction }) {
-    console.log("data:", data);
     const { t } = useTranslation();
     const theme = useTheme();
+
+    const [element1Height, setElement1Height] = useState(0);
+    const element2Ref = useRef(null);
+
+    // Obtenez la hauteur du premier élément (par exemple, au chargement de la page)
+    useEffect(() => {
+        if (element2Ref.current) {
+            setElement1Height(element2Ref.current.clientHeight);
+        }
+    }, []);
+
+    // Ajustez dynamiquement la hauteur du deuxième élément pour correspondre au premier élément
+    useEffect(() => {
+        if (element2Ref.current) {
+            element2Ref.current.style.height = `${element1Height}px`;
+        }
+    }, [element1Height]);
 
     // Si il n'y a pas "bonus" dans la description d'un forfait alors on affiche pas la box avec les informations
     const bonus = data.bonus;
 
     return (
         <Container
-            component="article"
-            disableGutters={false}
-            maxWidth="lg"
+            component="section"
+            disableGutters={true}
+            maxWidth={false}
             sx={{
+                width: "100%",
                 display: "flex",
-                alignItems: "center",
                 flexDirection: direction,
-                justifyContent: "space-evenly",
+                alignItems: "flex-start",
+                justifyContent: "center",
+                gap: "3rem",
+                paddingY: "3rem",
+                backgroundColor: theme.palette.background.default,
             }}
         >
             <Container
+                ref={element2Ref}
                 disableGutters={true}
                 maxWidth={false}
                 sx={{
-                    maxWidth: "330px",
+                    width: "56%",
+                    maxWidth: "70ch",
+                    height: "auto",
                     display: "flex",
                     flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
+                    alignItems: direction === "row" ? "start" : "end",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                    margin: "0",
+                    textAlign: direction === "row" ? "left" : "right",
                 }}
             >
-                <Typography
-                    component="p"
-                    variant="h1"
-                    sx={{
-                        position: "relative",
-                        top: "-200px",
-                        right: "-200px",
-                        fontSize: "7rem",
-                        fontFamily: "'Cinzel', serif;",
-                        textTransform: "uppercase",
-                        textAlign: "center",
-                        padding: "0.2rem",
-                        zIndex: "100",
-                    }}
-                >
-                    {data.id}
-                </Typography>
-                <img
-                    src={fleur}
-                    style={{
-                        position: "absolute",
-                        width: "280px",
-                        height: "400px",
-                    }}
-                />
-            </Container>
-            <Container
-                component="aside"
-                disableGutters={true}
-                maxWidth={false}
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                    paddingY: "2rem",
-                    backgroundColor: theme.palette.text.white,
-                    color: theme.palette.text.secondary,
-                }}
-            >
-                <Typography
-                    component="h2"
-                    variant="h4"
-                    sx={{
-                        textTransform: "uppercase",
-                        textAlign: "center",
-                        padding: "0.2rem",
-                    }}
-                >
+                <Typography component="p" variant="h3">
                     {data.title}
                 </Typography>
-                {data.items?.map((item, index) => (
-                    <React.Fragment key={index}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "3rem",
+                    }}
+                >
+                    <Box sx={{}}>
                         <Typography
                             component="p"
-                            variant="h6"
+                            variant="h4"
                             sx={{
-                                textAlign: "center",
-                                padding: "0.2rem",
+                                fontWeight: "bold",
+                                lineHeight: "1.7rem",
                             }}
                         >
-                            {item.element}
+                            {data.included}
                         </Typography>
-                        <Typography
-                            component="p"
-                            variant="h6"
-                            sx={{
-                                textAlign: "center",
-                                padding: "0.2rem",
-                            }}
-                        >
-                            {index !== data.items?.length - 1 && " + "}
-                        </Typography>
-                    </React.Fragment>
-                ))}
-                {data.bonus !== undefined && (
+                        <Box sx={{ paddingY: "1rem" }}>
+                            {data.items?.map((item, index) => (
+                                <React.Fragment key={index}>
+                                    <Typography component="p" variant="h6">
+                                        {item.element}
+                                    </Typography>
+                                    <Typography
+                                        component="p"
+                                        variant="h6"
+                                    ></Typography>
+                                </React.Fragment>
+                            ))}
+                        </Box>
+                    </Box>
                     <Box>
                         <Typography
                             component="p"
-                            variant="body1"
+                            variant="h4"
                             sx={{
-                                textTransform: "uppercase",
-                                textAlign: "center",
-                                padding: "0.2rem",
+                                fontWeight: "bold",
+                                lineHeight: "1.7rem",
                             }}
                         >
+                            {data.free}
+                        </Typography>
+                        <Typography component="p" variant="body2">
                             {data.bonus.title}
                         </Typography>
-                        {data.bonus.items.map((item, index) => (
-                            <React.Fragment key={index}>
-                                <Typography
-                                    component="p"
-                                    variant="body2"
-                                    sx={{
-                                        textAlign: "center",
-                                        padding: "0.2rem",
-                                    }}
-                                >
-                                    {item.element}
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="body2"
-                                    sx={{
-                                        textAlign: "center",
-                                        padding: "0.2rem",
-                                    }}
-                                >
-                                    {index !== data.bonus.items?.length - 1 &&
-                                        " + "}
-                                </Typography>
-                            </React.Fragment>
-                        ))}
+                        {data.bonus !== undefined && (
+                            <Box sx={{ paddingY: "1rem" }}>
+                                {data.bonus.items.map((item, index) => (
+                                    <React.Fragment key={index}>
+                                        <Typography component="p" variant="h6">
+                                            {item.element}
+                                        </Typography>
+                                        <Typography
+                                            component="p"
+                                            variant="body2"
+                                        ></Typography>
+                                    </React.Fragment>
+                                ))}
+                            </Box>
+                        )}
                     </Box>
-                )}
+                </Box>
+                <Typography component="p" variant="body1">
+                    {data.asterisk2}
+                </Typography>
             </Container>
             <Container
                 disableGutters={true}
                 maxWidth={false}
                 sx={{
+                    position: "relative",
                     width: "43%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundImage:
-                        "linear-gradient(to right, white 0%, white 33.33%, #E7D8D3 33.33%, #E7D8D3 66.66%, white 66.66%, white 100%)",
+                    height: "644px",
+                    margin: "0",
                 }}
             >
-                <img src={img} style={{ width: "490px", height: "720px" }} />
+                <Avatar
+                    src={fleur}
+                    variant="square"
+                    sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "top",
+                    }}
+                />
+                <Avatar
+                    src={img}
+                    variant="square"
+                    style={{
+                        position: "absolute",
+                        width: "90%",
+                        height: "90%",
+                        [direction === "row" ? "left" : "right"]: "-10%",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        objectFit: "contain",
+                        zIndex: "100",
+                    }}
+                />
             </Container>
         </Container>
     );

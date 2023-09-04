@@ -1,9 +1,31 @@
 {
     "welcome": "Bienvenue sur notre site web !",
-    "about": "À propos de nous",
     "name": "Noëmie",
     "lastname": "Lemoine",
     "job": "Make-up Artist",
+    "about": {
+        "title": "à propos",
+        "intro": [
+            {
+                "element": "Passionnée depuis mon plus jeune âge, j’allie mon métier à ma passion de maquilleuse depuis plusieurs années. Après avoir été diplômée du LCDM – Le Conservatoire Du Maquillage – j’ai été amenée à travailler dans divers domaines tels que la photographie, l’événementiel, les mariages etc…"
+            },
+            {
+                "element": "Etant sur Bordeaux et sa région, j’espère pouvoir vous faire partager mon savoir-faire lors d’une future rencontre."
+            },
+            {
+                "element": "Je vous propose de découvrir mon univers à travers ce site. Que vous soyez professionnels ou particuliers, n’hésitez pas à me contacter et je me ferai un plaisir de vous répondre."
+            },
+            {
+                "element": "À bientôt et bonne visite !"
+            },
+            {
+                "element": "Noëmie"
+            }
+        ]
+    },
+    "portfolio": {
+        "title": "Portfolio"
+    },
     "services": {
         "title": "Mariage",
         "subtitle": "Vivez votre mise en beauté comme un moment suspendu dans le temps...",
@@ -57,7 +79,10 @@
         "forfaits": [
             {
                 "id": "N1",
-                "title": "Forfait maquillage",
+                "id2": "N2",
+                "title": "Forfaits maquillage",
+                "included": "Inclus",
+                "free": "Offert",
                 "items": [
                     {
                         "element": "Analyse de style (30/45mn)"
@@ -78,14 +103,14 @@
                         "element": "Maquillage jour J mariée** (1h15)"
                     },
                     {
-                        "element": "3 invitées (2h15)"
+                        "element": "3 invitées (2h15) OU 5 invitées (3h30)"
                     }
                 ],
                 "bonus": {
-                    "title": "**Offert à la mariée le jour J:",
+                    "title": "À la mariée le jour J",
                     "items": [
                         {
-                            "element": "Rituel soin bonne mine jour J"
+                            "element": "Rituel soin bonne mine"
                         },
                         {
                             "element": "Un échantillon de votre rouge à lèvres"
@@ -93,51 +118,13 @@
                     ]
                 },
                 "asterisk1": "*Un minimum de 4 maquillages invitées est demandé afin de bénéficier de ce forfait.",
-                "asterisk2": "** Prévoir également des frais de déplacement."
-            },
-            {
-                "id": "N2",
-                "title": "Forfait maquillage",
-                "items": [
-                    {
-                        "element": "Analyse de style (30/45mn)"
-                    },
-                    {
-                        "element": "Conseils routine beauté"
-                    },
-                    {
-                        "element": "Échange régulier tout au long de l'année"
-                    },
-                    {
-                        "element": "Test maquillage (2h)"
-                    },
-                    {
-                        "element": "Mise en place du planning jour J"
-                    },
-                    {
-                        "element": "Maquillage jour J mariée** (1h15)"
-                    },
-                    {
-                        "element": "5 invitées (3h30)"
-                    }
-                ],
-                "bonus": {
-                    "title": "**Offert à la mariée le jour J:",
-                    "items": [
-                        {
-                            "element": "Rituel soin bonne mine jour J"
-                        },
-                        {
-                            "element": "Un échantillon de votre rouge à lèvres"
-                        }
-                    ]
-                },
-                "asterisk1": "*Un minimum de 4 maquillages invitées est demandé afin de bénéficier de ce forfait.",
-                "asterisk2": "** Prévoir également des frais de déplacement."
+                "asterisk2": "Prévoir également des frais de déplacement."
             },
             {
                 "id": "N3",
                 "title": "Forfait maquillage & coiffure",
+                "included": "Inclus",
+                "free": "Offert",
                 "items": [
                     {
                         "element": "Analyse de style (45mn/1h)"
@@ -177,6 +164,20 @@
             }
         ]
     },
+    "contact": {
+        "title": "Contact",
+        "field": {
+            "title": "Écrivez-moi !",
+            "nameAndLastName": "Votre prénom et nom de famille",
+            "email": "Votre adresse e-mail",
+            "text": "Votre message",
+            "required": "Champ requis",
+            "invalidEmail": "Adresse e-mail invalide",
+            "sendSucces": "Votre message a été envoyé !",
+            "submit": "Envoyer",
+            "close": "Fermer"
+        }
+    },
     "menuNavigation": [
         {
             "label": "Accueil",
@@ -200,7 +201,7 @@
         },
         {
             "label": "Contact",
-            "url": "/contact"
+            "url": "#"
         }
     ],
     "menuSocial": [

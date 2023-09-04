@@ -8,27 +8,12 @@ import { useTheme } from "@mui/material/styles";
 import backgroundImage from "../img/Index.webp";
 import Menu from "../components/Menu.jsx";
 import Accueil from "../components/Accueil.jsx";
+import Layout from "../Layouts/Layout.jsx";
+import Portfolio from "../components/Portfolio.jsx";
 
 export default function Home() {
-    const { t, language } = useTranslation();
+    const { t } = useTranslation();
     const theme = useTheme();
-
-    const imageNames = Array.from(
-        { length: 22 },
-        (_, index) => `collage${index + 1}.webp`
-    );
-    const images = imageNames.map((imageName) =>
-        require(`../img/portfolio/${imageName}`)
-    );
-
-    const customStyles = {
-        position: "sticky",
-        top: "0px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        backgroundColor: "white",
-    };
 
     return (
         <Container
@@ -78,7 +63,7 @@ export default function Home() {
                 <Box
                     sx={{
                         height: "2px",
-                        backgroundColor: "white",
+                        backgroundColor: theme.palette.background.default,
                     }}
                 />
                 <Typography
@@ -93,24 +78,9 @@ export default function Home() {
                     {t("lastname")}
                 </Typography>
             </Box>
-            <Menu position="sticky" />
-            <Container
-                maxWidth={false}
-                sx={{
-                    backgroundColor: "white",
-                }}
-            >
-                <Container component="section" maxWidth="lg">
-                    {images.map((image, index) => (
-                        <img
-                            key={index}
-                            src={image}
-                            alt={`Collage ${index + 1}`}
-                            style={{ width: "100%" }}
-                        />
-                    ))}
-                </Container>
-            </Container>
+            <Layout h1={null} maxWidth="unset">
+                <Portfolio />
+            </Layout>
         </Container>
     );
 }
