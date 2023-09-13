@@ -1,207 +1,215 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Multilingue
 import { useTranslation } from "react-i18next";
 
 import { useTheme } from "@mui/material/styles";
-import { Box, Container, Typography } from "@mui/material";
+import {
+    Avatar,
+    Box,
+    Button,
+    Container,
+    Typography,
+    useMediaQuery,
+} from "@mui/material";
 
 import fleur from "../img/mariage/fleur.webp";
+import ForfaitMobile from "./ForfaitMobile.jsx";
 
 export default function Forfait({ data, img, direction }) {
-    console.log("data:", data);
     const { t } = useTranslation();
     const theme = useTheme();
+
+    const [element1Height, setElement1Height] = useState(650);
+    console.log("element1Height:", element1Height);
+    const element2Ref = useRef(null);
+
+    // Permet de désactiver les useEffect en taille d'écran md
+    const isMd = useMediaQuery((theme) => theme.breakpoints.up("md"));
+
+    // Obtien la hauteur du premier élément (par exemple, au chargement de la page)
+    useEffect(() => {
+        if (element2Ref.current) {
+            setElement1Height(element2Ref.current.clientHeight);
+        }
+    }, []);
+    console.log("element2Ref:", element2Ref);
+
+    // Ajuste dynamiquement la hauteur du deuxième élément pour correspondre au premier élément
+    useEffect(() => {
+        if (element2Ref.current) {
+            element2Ref.current.style.height = `${element1Height}px`;
+        }
+    }, [element1Height]);
 
     // Si il n'y a pas "bonus" dans la description d'un forfait alors on affiche pas la box avec les informations
     const bonus = data.bonus;
 
     return (
         <Container
-            component="article"
-            disableGutters={false}
+            component="section"
             maxWidth="lg"
             sx={{
+                width: "100%",
                 display: "flex",
                 flexDirection: direction,
+                alignItems: "stretch",
+                alignContent: "center",
                 justifyContent: "space-between",
-                paddingBottom: "5rem",
+                paddingY: "3rem",
+                backgroundColor: theme.palette.background.default,
+                [theme.breakpoints.down("smd")]: {
+                    flexDirection: "column-reverse",
+                },
             }}
         >
-            <Container
-                component="aside"
-                disableGutters={true}
-                maxWidth="md"
-                sx={{
-                    height: "700px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    backgroundColor: theme.palette.text.white,
-                    color: theme.palette.text.secondary,
-                }}
-            >
-                <Typography component="p" variant="h3">
-                    {data.title}
-                </Typography>
-                <Box
-                    sx={{
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-evenly",
-                    }}
-                >
-                    <Box sx={{}}>
-                        <Typography
-                            component="p"
-                            variant="h4"
-                            sx={{
-                                fontWeight: "bold",
-                            }}
-                        >
-                            {data.included}
+            {isMd ? (
+                // Layout pour les écrans MD ou plus PETIT
+                <div>
+                    <ForfaitMobile />
+                </div>
+            ) : (
+                // Layout pour les écrans plus GRAND que MD
+                <>
+                    <Box
+                        ref={element2Ref}
+                        sx={{
+                            height: "100%",
+                            minHeight: "550px",
+                            maxHeight: "650px",
+                            minWidth: "55ch",
+                            maxWidth: "67ch",
+                            width: "60%",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            gap: "2rem",
+                            alignItems: direction === "row" ? "start" : "end",
+                            textAlign: direction === "row" ? "left" : "right",
+                            padding:
+                                direction === "row"
+                                    ? "0 1rem 0 0"
+                                    : "0 0 0 1rem",
+                        }}
+                    >
+                        <Typography component="p" variant="h2" sx={{}}>
+                            {data.title}
                         </Typography>
-                        {data.items?.map((item, index) => (
-                            <React.Fragment key={index}>
-                                <Typography component="p" variant="h6">
-                                    {item.element}
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="h6"
-                                ></Typography>
-                            </React.Fragment>
-                        ))}
-                    </Box>
-                    <Box sx={{}}>
                         <Box
                             sx={{
                                 display: "flex",
-                                alignItems: "baseline",
-                                gap: "5px",
+                                flexDirection: "column",
+                                gap: "1rem",
+                                flexGrow: "1",
                             }}
                         >
-                            <Typography
-                                component="p"
-                                variant="h4"
-                                sx={{
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                {data.free}
-                            </Typography>
-                            <Typography component="p" variant="body2">
-                                {data.bonus.title}
+                            <Box>
+                                <Typography
+                                    component="p"
+                                    variant="h4"
+                                    sx={{
+                                        fontWeight: "bold",
+                                        lineHeight: "1.7rem",
+                                    }}
+                                >
+                                    {data.included}
+                                </Typography>
+                                <Box sx={{ paddingY: ".5rem" }}>
+                                    {data.items?.map((item, index) => (
+                                        <React.Fragment key={index}>
+                                            <Typography
+                                                component="p"
+                                                variant="h6"
+                                            >
+                                                {item.element}
+                                            </Typography>
+                                        </React.Fragment>
+                                    ))}
+                                </Box>
+                            </Box>
+                            <Box>
+                                <Typography
+                                    component="p"
+                                    variant="h4"
+                                    sx={{
+                                        fontWeight: "bold",
+                                        lineHeight: "1.7rem",
+                                    }}
+                                >
+                                    {data.free}
+                                </Typography>
+                                <Typography component="p" variant="body2">
+                                    {data.bonus.title}
+                                </Typography>
+                                {data.bonus !== undefined && (
+                                    <Box sx={{ paddingY: ".5rem" }}>
+                                        {data.bonus.items.map((item, index) => (
+                                            <React.Fragment key={index}>
+                                                <Typography
+                                                    component="p"
+                                                    variant="h6"
+                                                >
+                                                    {item.element}
+                                                </Typography>
+                                            </React.Fragment>
+                                        ))}
+                                    </Box>
+                                )}
+                            </Box>
+                            <Typography component="p" variant="body1">
+                                {data.asterisk2}
                             </Typography>
                         </Box>
-                        {data.bonus !== undefined && (
-                            <Box>
-                                {data.bonus.items.map((item, index) => (
-                                    <React.Fragment key={index}>
-                                        <Typography component="p" variant="h6">
-                                            {item.element}
-                                        </Typography>
-                                        <Typography
-                                            component="p"
-                                            variant="body2"
-                                        ></Typography>
-                                    </React.Fragment>
-                                ))}
-                            </Box>
-                        )}
                     </Box>
-                </Box>
-            </Container>
-            <Container
-                disableGutters={true}
-                maxWidth="lg"
-                sx={{
-                    position: "relative",
-                    height: "700px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <Container
-                    disableGutters={true}
-                    maxWidth={false}
-                    sx={{
-                        width: "43%",
-                        height: "auto",
-                        margin: "0",
-                    }}
-                >
-                    <img
-                        src={fleur}
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            objectPosition: "top",
-                        }}
-                    />
-                </Container>
-                {/*                 <img
-                    src={fleur}
-                    style={{
-                        alignSelf: "self-end",
-                        height: "100%",
-                        top: "0",
-                        objectFit: "contain",
-                    }}
-                />
-                <img
-                    src={img}
-                    style={{
-                        position: "absolute",
-                        width: "90%",
-                        height: "90%",
-                        left: "-10%",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        objectFit: "contain",
-                        zIndex: "100",
-                    }}
-                /> */}
-            </Container>
-        </Container>
-    );
-}
-
-{
-    /*                 <Box
-                    sx={{
-                        position: "absolute",
-                        width: "90%",
-                        height: "90%",
-                        left: "-10%",
-                        objectFit: "contain",
-                        zIndex: "200",
-                    }}
-                >
                     <Box
                         sx={{
+                            position: "relative",
+                            width: "30%",
+                            height: `${element1Height}px`,
+                            maxHeight: "45rem",
                             display: "flex",
-                            alignItems: "baseline",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            backgroundImage: `url(${fleur})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
                         }}
                     >
-                        <Typography component="p" variant="h1">
-                            {data.id}
-                        </Typography>
-                        <Typography component="p" variant="h4">
-                            {"&"}
-                        </Typography>
+                        <Avatar
+                            src={img}
+                            variant="square"
+                            alt=""
+                            imgProps={{
+                                sx: {
+                                    objectFit:
+                                        direction === "row"
+                                            ? "cover"
+                                            : "contain",
+                                },
+                            }}
+                            sx={{
+                                position: "relative",
+                                left: direction === "row" ? "-50%" : undefined,
+                                right:
+                                    direction == "row-reverse"
+                                        ? "-50%"
+                                        : undefined,
+                                height: `calc(${element1Height}px - 10%)`,
+                                width:
+                                    direction === "row"
+                                        ? "fit-content"
+                                        : "auto",
+                                paddingLeft:
+                                    direction === "row" ? "70px" : undefined,
+                                paddingRight:
+                                    direction == "row-reverse"
+                                        ? "70px"
+                                        : undefined,
+                                aspectRatio: "0.7",
+                            }}
+                        />
                     </Box>
-                    <Typography
-                        component="p"
-                        variant="h1"
-                        sx={{
-                            paddingLeft: "5rem",
-                        }}
-                    >
-                        {data.id2}
-                    </Typography>
-                </Box> */
+                </>
+            )}
+        </Container>
+    );
 }

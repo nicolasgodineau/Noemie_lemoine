@@ -1,91 +1,217 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
-import { Box, Container, Icon, Typography, Link } from "@mui/material";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import {
+    Box,
+    AppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+    Menu,
+    MenuItem,
+    Button,
+} from "@mui/material";
+import { popoverClasses } from "@mui/material/Popover";
 import { useTheme } from "@mui/material/styles";
-import SocialMenu from "./SocialMenu.jsx";
+import MenuIcon from "@mui/icons-material/Menu";
 import ContactModal from "./ContactModal.jsx";
+import SocialMenu from "./SocialMenu.jsx";
+import { useMediaQuery } from "@mui/material";
 
-export default function Menu({ position }) {
+export default function UnifiedMenu() {
     const { t } = useTranslation();
     const theme = useTheme();
+    const location = useLocation();
     const menuNavigation = t("menuNavigation", { returnObjects: true });
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const trigger = useScrollTrigger({
+        disableHysteresis: true,
+        threshold: 0,
+    });
 
-    const openModal = () => {
-        setIsContactModalOpen(true);
-    };
+    const openModal = () => setIsContactModalOpen(true);
+    const closeModal = () => setIsContactModalOpen(false);
 
-    const closeModal = () => {
-        setIsContactModalOpen(false);
-    };
-    return (
-        <Container
-            component="header"
-            disableGutters={true}
-            maxWidth={false}
-            sx={{
-                width: "100%",
-                position: { position },
-                top: "0px",
-                paddingY: "0.5rem",
-                backgroundColor: theme.palette.background.default,
-            }}
-        >
-            <Container
-                component="nav"
-                maxWidth="lg"
+    const [anchorElNav, setAnchorElNav] = useState(null);
+
+    const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+    const handleCloseNavMenu = () => setAnchorElNav(null);
+
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const isHome = location.pathname === "/";
+
+    const generateMenuButtons = (
+        menuNavigation,
+        openModal,
+        handleCloseNavMenu,
+        theme,
+        t,
+        isMobile
+    ) =>
+        menuNavigation.map((menuItem, index) => (
+            <MenuItem
+                component="li"
+                key={index}
+                onClick={handleCloseNavMenu}
                 sx={{
-                    display: "flex",
-                    alignItems: "baseline",
-                    justifyContent: "space-between",
+                    justifyContent: "center",
+                    padding: isMobile ? "1rem" : "0",
                 }}
             >
-                <Box
+                <Button
+                    component={NavLink}
+                    to={menuItem.url}
+                    key={index}
+                    color="primary"
+                    onClick={menuItem.label === "Contact" ? openModal : null}
                     sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: ".5rem",
+                        ":hover": {
+                            bgcolor: "unset",
+                            textDecoration: "underline",
+                            textUnderlineOffset: "0.2rem",
+                            color: `${theme.palette.link} !important`,
+                        },
+                        ...(menuItem.label !== "Contact"
+                            ? {
+                                  "&.active": {
+                                      textDecoration: "underline",
+                                      textUnderlineOffset: ".2rem",
+                                      color: `${theme.palette.link} !important`,
+                                  },
+                              }
+                            : {}),
                     }}
                 >
-                    <Typography variant="h3">{t("name")}</Typography>
-                    <SocialMenu gap=".5rem" />
-                </Box>
-                <Box
-                    sx={{
-                        flexGrow: "1",
-                        display: "flex",
-                        alignItems: "flex-end",
-                        justifyContent: "flex-end",
-                        gap: "1rem",
-                    }}
+                    <Typography variant="body1">{t(menuItem.label)}</Typography>
+                </Button>
+            </MenuItem>
+        ));
+
+    return (
+        <AppBar
+            component="nav"
+            position="sticky"
+            elevation={trigger ? (isHome ? 0 : 1) : 0}
+        >
+            <Toolbar
+                sx={{
+                    flexDirection: isMobile ? "column" : "row",
+                    gap: isMobile ? "0" : "5vmax",
+                    backgroundColor: theme.palette.background.default,
+                }}
+            >
+                {/* Nom ou titre */}
+                <Typography
+                    variant="h3"
+                    color="primary"
+                    sx={{ padding: "1rem" }}
                 >
-                    {menuNavigation.map((menuItem, index) => (
-                        <NavLink
-                            key={index}
-                            to={menuItem.url}
-                            onClick={
-                                menuItem.label === "Contact" ? openModal : null
-                            }
+                    {t("name")}
+                </Typography>
+                {isMobile ? (
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: "flex",
+                            flexDirection: "column",
+                        }}
+                    >
+                        {/* Bouton de menu */}
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="primary"
+                            sx={{ cursor: "pointer" }}
                         >
-                            <Typography
-                                component="a"
-                                variant="body"
-                                key={index}
-                                color="textPrimary"
-                            >
-                                {t(menuItem.label)}
-                            </Typography>
-                        </NavLink>
-                    ))}
-                    <ContactModal
-                        open={isContactModalOpen}
-                        onClose={closeModal}
-                    />
-                </Box>
-            </Container>
-        </Container>
+                            <MenuIcon />
+                        </IconButton>
+                        {/* Menu déroulant */}
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left",
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                ".MuiMenu-paper": {
+                                    width: "100%",
+                                    minWidth: "100% !important",
+                                    maxWidth: "100% !important",
+                                    left: "0 !important",
+                                    margin: "0",
+
+                                    backgroundColor:
+                                        theme.palette.background.default,
+                                    textAlign: "center",
+                                },
+                                [`& .${popoverClasses.paper}`]: {
+                                    margin: "0",
+                                },
+                            }}
+                        >
+                            {generateMenuButtons(
+                                menuNavigation,
+                                openModal,
+                                handleCloseNavMenu,
+                                theme,
+                                t,
+                                isMobile
+                            )}
+                            <SocialMenu
+                                gap="2rem"
+                                justifyContent={
+                                    isMobile ? "space-evenly" : "center"
+                                }
+                            />
+                        </Menu>
+                    </Box>
+                ) : (
+                    <Box
+                        sx={{
+                            flexGrow: "1",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "1rem",
+                        }}
+                    >
+                        <SocialMenu
+                            gap="2rem"
+                            justifyContent={
+                                isMobile ? "space-evenly" : "center"
+                            }
+                        />
+                        <Box
+                            sx={{
+                                flexGrow: "1",
+                                display: "inline-flex",
+                                justifyContent: "flex-end",
+                            }}
+                        >
+                            {generateMenuButtons(
+                                menuNavigation,
+                                openModal,
+                                handleCloseNavMenu,
+                                theme,
+                                t,
+                                isMobile
+                            )}
+                        </Box>
+                    </Box>
+                )}
+            </Toolbar>
+            <ContactModal open={isContactModalOpen} onClose={closeModal} />
+        </AppBar>
     );
 }

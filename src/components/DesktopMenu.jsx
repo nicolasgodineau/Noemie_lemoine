@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { Box, Container, Icon, Typography, Link } from "@mui/material";
+import { Box, Container, Icon, Typography, Link, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SocialMenu from "./SocialMenu.jsx";
 import ContactModal from "./ContactModal.jsx";
@@ -38,7 +38,7 @@ export default function DesktopMenu({ position }) {
                     gap: ".5rem",
                 }}
             >
-                <Typography variant="h3">{t("name")}</Typography>
+                <Typography variant="h3">{t("name")} bureau</Typography>
                 <SocialMenu gap=".5rem" />
             </Box>
             <Box
@@ -51,22 +51,34 @@ export default function DesktopMenu({ position }) {
                 }}
             >
                 {menuNavigation.map((menuItem, index) => (
-                    <NavLink
-                        key={index}
+                    <Button
+                        component={NavLink}
                         to={menuItem.url}
+                        key={index}
+                        color="primary"
                         onClick={
                             menuItem.label === "Contact" ? openModal : null
                         }
+                        sx={{
+                            ":hover": {
+                                bgcolor: "unset",
+                                textDecoration: "underline",
+                                textUnderlineOffset: "0.2rem",
+                                color: `${theme.palette.link} !important`,
+                            },
+                            ...(menuItem.label !== "Contact"
+                                ? {
+                                      "&.active": {
+                                          textDecoration: "underline",
+                                          textUnderlineOffset: ".2rem",
+                                          color: `${theme.palette.link} !important`,
+                                      },
+                                  }
+                                : {}),
+                        }}
                     >
-                        <Typography
-                            component="a"
-                            variant="body"
-                            key={index}
-                            color="textPrimary"
-                        >
-                            {t(menuItem.label)}
-                        </Typography>
-                    </NavLink>
+                        {t(menuItem.label)}
+                    </Button>
                 ))}
                 <ContactModal open={isContactModalOpen} onClose={closeModal} />
             </Box>

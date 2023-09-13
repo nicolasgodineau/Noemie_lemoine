@@ -41,7 +41,12 @@ export default function MobileMenu() {
     const handleCloseNavMenu = () => setAnchorElNav(null);
 
     return (
-        <AppBar component="nav" position="static" elevation={trigger ? 4 : 0}>
+        <AppBar
+            component="nav"
+            position="static"
+            elevation={trigger ? 1 : 0}
+            sx={{}}
+        >
             <Toolbar
                 sx={{
                     flexDirection: "column",

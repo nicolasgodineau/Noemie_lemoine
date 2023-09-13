@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Container, Typography, Box, Button } from "@mui/material";
+import {
+    Container,
+    Typography,
+    Box,
+    Button,
+    Link as RouterLink,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Noemie from "../img/Noëmie.webp";
-import ContactForm from "../components/ContactForm.jsx";
 import Layout from "../Layouts/Layout.jsx";
-import { Link } from "react-router-dom";
 import ContactModal from "../components/ContactModal.jsx";
 
 export default function About() {
@@ -17,41 +22,43 @@ export default function About() {
         returnObjects: true,
     });
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
+    const openModal = () => setIsContactModalOpen(true);
+    const closeModal = () => setIsContactModalOpen(false);
 
     return (
         <Layout h1="about.title" maxWidth={maxWidth}>
             <Container
                 component="section"
-                disableGutters={true}
                 maxWidth="lg"
                 sx={{
                     display: "flex",
-                    flexWrap: "wrap",
                     gap: "2rem",
                     alignItems: "flex-start",
                     alignContent: "top",
                     justifyContent: "center",
+                    marginBottom: "5rem",
+                    [theme.breakpoints.down("md")]: {
+                        flexDirection: "column",
+                        alignItems: "center",
+                    },
                 }}
             >
                 <Container
-                    disableGutters={true}
+                    disableGutters
                     maxWidth={false}
                     sx={{
                         width: "43%",
+                        height: "34rem",
                         maxWidth: "300px",
                         minWidth: "20rem",
-                        height: "auto",
                         margin: "0",
-                        paddingX: "1rem",
+                        [theme.breakpoints.down("md")]: {
+                            width: "100%",
+                            maxWidth: "500px",
+                            height: "20rem",
+                        },
                     }}
                 >
                     <img
@@ -59,87 +66,128 @@ export default function About() {
                         style={{
                             width: "100%",
                             height: "100%",
-                            objectFit: "contain",
+                            objectFit: "cover",
+                            objectPosition: "left",
+                            aspectRatio: "9/16",
                         }}
                     />
                 </Container>
                 <Box
                     sx={{
-                        width: "56%",
-                        maxWidth: "70ch",
-                        minWidth: "60ch",
-                        height: "auto",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-evenly",
-                        margin: "0",
-                        textAlign: "left",
-                    }}
-                >
-                    {dataIntro.map((item, index) => (
-                        <Typography
-                            component="p"
-                            variant="body1"
-                            key={index}
-                            sx={{
-                                textAlign: "left",
-                                padding: "0.2rem",
-                            }}
-                        >
-                            {item.element}
-                        </Typography>
-                    ))}
-                </Box>
-            </Container>
-            <Container
-                component="section"
-                disableGutters={true}
-                maxWidth="lg"
-                sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "2rem",
-                    alignItems: "flex-start",
-                    alignContent: "top",
-                    justifyContent: "center",
-                }}
-            >
-                <Box
-                    sx={{
-                        width: "56%",
-                        maxWidth: "70ch",
-                        minWidth: "60ch",
-                        height: "auto",
                         display: "flex",
                         flexDirection: "column",
                         gap: "2rem",
-                        justifyContent: "space-evenly",
-                        margin: "0",
-                        textAlign: "left",
+                        justifyContent: "space-between",
+                        paddingX: "1rem",
+                        [theme.breakpoints.down("md")]: {
+                            width: "100%",
+                            maxWidth: "500px",
+                            height: "auto",
+                        },
                     }}
                 >
-                    <Typography variant="body1">
-                        Pour toute demande concernant une prestation maquillage
-                        et/ou coiffure, contactez-moi afin d’obtenir un devis
-                        sur mesure.
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        size="large"
+                    <Box
                         sx={{
-                            width: "20vmax",
-                            minWidth: "300px",
-                            alignSelf: "center",
-                            borderRadius: "0",
-                            color: "white",
+                            maxWidth: "70ch",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-evenly",
+                            margin: "0",
+                            textAlign: "left",
+                            [theme.breakpoints.down("md")]: {
+                                gap: "2rem",
+                            },
                         }}
-                        onClick={handleOpenModal}
                     >
-                        {t("contact.field.title")} 👋🏻👋🏻👋🏻
-                    </Button>
+                        {dataIntro.map((item, index) => (
+                            <Typography
+                                component="p"
+                                variant={
+                                    index === dataIntro.length - 1
+                                        ? "h4"
+                                        : "body1"
+                                }
+                                key={index}
+                                sx={{
+                                    textAlign: "left",
+                                    padding: "0.2rem",
+                                    paddingX:
+                                        index === dataIntro.length - 1
+                                            ? "1rem"
+                                            : "0",
+                                    textAlign:
+                                        index === dataIntro.length - 1
+                                            ? "right"
+                                            : "left",
+                                    fontStyle:
+                                        index === dataIntro.length - 1
+                                            ? "italic"
+                                            : "normal",
+                                }}
+                            >
+                                {item.element}
+                            </Typography>
+                        ))}
+                    </Box>
+                    <Box
+                        sx={{
+                            maxWidth: "70ch",
+                            height: "auto",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "2rem",
+                            justifyContent: "space-evenly",
+                            margin: "0",
+                            textAlign: "left",
+                            [theme.breakpoints.down("md")]: {
+                                gap: "1rem",
+                            },
+                        }}
+                    >
+                        <Typography variant="body1">
+                            Pour toute demande concernant une prestation
+                            maquillage et/ou coiffure, contactez-moi afin
+                            d’obtenir un devis sur mesure.
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            sx={{
+                                width: "20vmax",
+                                minWidth: "300px",
+                                alignSelf: "center",
+                                borderRadius: "0",
+                                color: "white",
+                                [theme.breakpoints.down("md")]: {
+                                    width: "100%",
+                                },
+                            }}
+                            onClick={openModal}
+                        >
+                            {t("contact.field.title")}
+                        </Button>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            component={Link}
+                            to="/cv"
+                            sx={{
+                                width: "20vmax",
+                                minWidth: "300px",
+                                alignSelf: "center",
+                                borderRadius: "0",
+                                color: "white",
+                                [theme.breakpoints.down("md")]: {
+                                    width: "100%",
+                                },
+                            }}
+                        >
+                            {t("cv.title")}
+                        </Button>
+                    </Box>
                 </Box>
-                <ContactModal open={isModalOpen} onClose={handleCloseModal} />
             </Container>
+            <ContactModal open={isContactModalOpen} onClose={closeModal} />
         </Layout>
     );
 }

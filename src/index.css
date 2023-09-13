@@ -10,43 +10,16 @@
 
 body {
     height: 100svh;
+    /*     height: 100svh;
+    width: 100svw; */
     /*     background-image: url(./img/Index.webp);
     background-position: bottom 30% center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed; */
-    overflow: "scroll";
 }
 
 #root {
-    height: 100%;
     width: 100%;
-    overflow: "scroll";
-}
-
-.carousel .thumb.selected,
-.carousel .thumb:hover {
-    border: 1px solid #baaaa2 !important;
-}
-
-/* Pour ajuster la hauteur des miniatures */
-.carousel .thumbs-wrapper {
-    height: max-content;
-    width: max-content;
-    display: none;
-}
-
-.carousel .thumbs-wrapper .thumbs {
-    display: flex;
-    justify-content: space-between;
-}
-.carousel .thumbs-wrapper .thumb {
-    margin: 0 !important;
-}
-
-/* Pour ajuster la hauteur des images des miniatures */
-.carousel .thumb img {
-    height: 240px !important;
-    width: 240px !important;
-    object-fit: contain;
+    height: 100%;
 }

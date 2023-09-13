@@ -3,8 +3,11 @@ import grey from "@mui/material/colors/grey";
 let theme = createTheme({
     breakpoints: {
         values: {
-            xs: 0, // Extra small devices (portrait phones)
+            xxs: 320,
+            xs: 320, // Extra small devices (portrait phones)
+            xsm: 480,
             sm: 600, // Small devices (landscape phones)
+            smd: 750,
             md: 960, // Medium devices (tablets)
             lg: 1280, // Large devices (desktops)
             xl: 1920, // Extra large devices (large desktops)

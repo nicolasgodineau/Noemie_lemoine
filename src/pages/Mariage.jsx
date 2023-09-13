@@ -1,22 +1,27 @@
 import React from "react";
 // Multilingue
 import { useTranslation } from "react-i18next";
-import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
-import { Box, Container, Typography, Grid } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import Menu from "../components/Menu.jsx";
+import {
+    Box,
+    Container,
+    Typography,
+    useMediaQuery,
+    Avatar,
+} from "@mui/material";
 
 import introImg from "../img/mariage/intro.webp";
 import forfait1Img from "../img/mariage/forfait1.webp";
-import forfait2Img from "../img/mariage/forfait2.webp";
+import forfait2Img from "../img/Group 7.png";
 import Forfait from "../components/Forfait.jsx";
+import ForfaitMobile from "../components/ForfaitMobile.jsx";
 import Layout from "../Layouts/Layout.jsx";
 
 export default function Mariage() {
     const { t } = useTranslation();
     const theme = useTheme();
     const maxWidth = theme.breakpoints.values.lg;
+    const isMd = useMediaQuery((theme) => theme.breakpoints.down("md"));
 
     const dataIntro = t("services.intro", {
         returnObjects: true,
@@ -29,21 +34,9 @@ export default function Mariage() {
     });
     const forfait1 = forfaits[0];
     const forfait2 = forfaits[1];
-    const forfait3 = forfaits[2];
-    const ForfaitMaquillageCoiffure = t(
-        "services.forfait.forfaitMaquillageCoiffure",
-        {
-            returnObjects: true,
-        }
-    );
 
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: "center",
-        color: theme.palette.text.secondary,
-    }));
+    const isCustomBreakpoint = useMediaQuery("(max-width: 800px)");
+    console.log("isCustomBreakpoint:", isCustomBreakpoint);
 
     return (
         <Layout h1="services.title" maxWidth={maxWidth}>
@@ -56,150 +49,51 @@ export default function Mariage() {
             >
                 {t("services.subtitle")}
             </Typography>
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                    flexGrow: 1,
-                }}
-            >
-                <Grid
-                    container
-                    sx={{
-                        display: "flex",
-                        justifyContent: "space-evenly",
-                        flexGrow: 1,
-                    }}
-                >
-                    <Grid item xs={4} md={4} lg={4}>
-                        <Item>
-                            {" "}
-                            <img
-                                src={introImg}
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "contain",
-                                    objectPosition: "top",
-                                }}
-                            />
-                        </Item>
-                    </Grid>
-                    {/*                     <Grid item xs={6}>
-                        <Item>xs=6</Item>
-                    </Grid> */}
-                    <Grid item xs={6} md={7} lg={7}>
-                        <Item>
-                            {" "}
-                            <Box>
-                                {dataIntro.map((item, index) => (
-                                    <Typography
-                                        component="p"
-                                        variant="body1"
-                                        key={index}
-                                        sx={{
-                                            textAlign: "left",
-                                            padding: "0.2rem",
-                                        }}
-                                    >
-                                        {item.element}
-                                    </Typography>
-                                ))}
-                            </Box>
-                            <Box
-                                sx={{
-                                    height: "auto",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                }}
-                            >
-                                <Typography
-                                    component="p"
-                                    variant="body"
-                                    sx={{
-                                        padding: "0.2rem",
-                                    }}
-                                >
-                                    {t("services.steps.subtitle")}
-                                </Typography>
-                                {dataSteps.map((item, index) => (
-                                    <React.Fragment key={index}>
-                                        <Typography
-                                            component="p"
-                                            variant="body"
-                                            key={index}
-                                            sx={{
-                                                fontWeight: "bolder",
-                                                padding: "0.2rem",
-                                            }}
-                                        >
-                                            {item.title}
-                                        </Typography>
-                                        <Typography
-                                            component="p"
-                                            variant="body"
-                                            key={index}
-                                            sx={{
-                                                padding: "0.2rem",
-                                            }}
-                                        >
-                                            {item.description}
-                                        </Typography>
-                                    </React.Fragment>
-                                ))}
-                            </Box>
-                        </Item>
-                    </Grid>
-                </Grid>
-            </Box>
-
-            {/*             <Container
-                component="section"
-                disableGutters={false}
+            <Container
                 maxWidth="lg"
                 sx={{
+                    maxHeight: "450px",
                     display: "flex",
-                    flexWrap: "wrap",
                     gap: "2rem",
-                    justifyContent: "space-evenly",
+                    justifyContent: "space-between",
+                    [theme.breakpoints.down("md")]: {
+                        maxHeight: "100%",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    },
                 }}
             >
-                <Container
-                    disableGutters={true}
-                    maxWidth={false}
+                <Avatar
+                    src={introImg}
+                    alt="Votre image"
+                    variant="square"
                     sx={{
-                        width: "43%",
-                        maxHeight: "600px",
-                        minHeight: "400px",
-                        maxWidth: "300px",
-                        minWidth: "20rem",
-                        margin: "0",
-                    }}
-                >
-                    <img
-                        src={introImg}
-                        style={{
+                        width: "40%",
+                        height: "100%",
+                        maxHeight: "450px",
+                        aspectRatio: "0.5",
+                        ".MuiAvatar-img": {
+                            [theme.breakpoints.down("sm")]: {
+                                objectPosition: "0% 28%",
+                            },
+                        },
+                        [theme.breakpoints.down("md")]: {
                             width: "100%",
                             height: "100%",
-                            objectFit: "contain",
-                            objectPosition: "top",
-                        }}
-                    />
-                </Container>
-                <Container
-                    disableGutters={true}
-                    maxWidth={false}
+                            aspectRatio: "10/9",
+                        },
+                    }}
+                />
+                <Box
                     sx={{
-                        width: "56%",
                         maxWidth: "70ch",
-                        minWidth: "60ch",
-                        height: "auto",
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "space-evenly",
-                        margin: "0",
-                        textAlign: "left",
+                        gap: "3svh",
+                        justifyContent: "space-between",
+                        [theme.breakpoints.down("sm")]: {
+                            maxWidth: "50ch",
+                        },
                     }}
                 >
                     <Box>
@@ -259,14 +153,32 @@ export default function Mariage() {
                             </React.Fragment>
                         ))}
                     </Box>
-                </Container>
+                </Box>
             </Container>
-            <Forfait data={forfait1} img={forfait1Img} direction="row" />
-            <Forfait
-                data={forfait2}
-                img={forfait2Img}
-                direction="row-reverse"
-            /> */}
+            <>
+                {!isMd ? (
+                    // Si isMd est false on affiche le forfait bureau
+                    <>
+                        <Forfait
+                            data={forfait1}
+                            img={forfait1Img}
+                            direction="row"
+                        />
+                        <Forfait
+                            data={forfait2}
+                            img={forfait2Img}
+                            direction="row-reverse"
+                        />
+                    </>
+                ) : (
+                    // Si isMd est true on affiche le forfait mobile
+
+                    <>
+                        <ForfaitMobile data={forfait1} img={forfait1Img} />
+                        <ForfaitMobile data={forfait2} img={forfait2Img} />
+                    </>
+                )}
+            </>
         </Layout>
     );
 }

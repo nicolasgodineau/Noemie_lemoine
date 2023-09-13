@@ -31,7 +31,7 @@
         "subtitle": "Vivez votre mise en beauté comme un moment suspendu dans le temps...",
         "intro": [
             {
-                "element": "Depuis maintenant 10 ans, je vous accompagne avec soin à chaque étape de vos préparatifs jusqu'au jour J."
+                "element": "Depuis maintenant 10 ans, je vous accompagne avec soin à chaque étape de vos préparatifs jusqu’au jour J."
             },
             {
                 "element": "Mon rôle est de vous conseiller et de vous guider pour atteindre la mise en beauté parfaite."
@@ -42,38 +42,17 @@
             "list": [
                 {
                     "title": "Première étape : Le rendez-vous",
-                    "description": "La première étape est un rendez-vous en visioconférence afin d’établir le premier contact, de comprendre vos habitudes puis ce que vous souhaitez pour le jour J."
+                    "description": "Nous débutons par un premier rendez-vous  en visioconférence. Cela me permet de comprendre vos habitudes et vos souhaits pour le jour J."
                 },
                 {
                     "title": "Deuxième étape : L'essai",
-                    "description": "La deuxième étape, l’essai, qui est simplement la mise en pratique de nos précédents échanges."
+                    "description": "La phase d’essai concrétise nos discussions. Elle est une mise en pratique des idées évoquées précédemment."
                 },
                 {
                     "title": "Troisième étape : Le jour J",
-                    "description": "Et pour finir la troisième étape, le jour J, le moment le plus important pour vous. Il ne vous reste qu’à profiter de l’instant présent et de vous faire chouchouter."
+                    "description": "La dernière étape, le jour J, est le moment le plus important pour vous. Profitez de l’instant présent pendant que je m’occupe de vous chouchouter."
                 }
             ]
-        },
-        "description": [
-            {
-                "line": "Vivez votre mise en beauté comme un moment suspendu par le temps …"
-            },
-            {
-                "line": "Je prendrai soin de vous accompagner tout au long de vos préparatifs jusqu’au jour J."
-            },
-            {
-                "line": "Vos souhaits auront toutes mon attention et je serai ravie de vous conseiller, vous rassurer et vous orienter vers un style qui vous convienne."
-            },
-            {
-                "line": "Que ce soit une beauté au naturel, sophistiquée ou chic, je mettrai la lumière sur votre nature sublime."
-            },
-            {
-                "line": "Pour une association optimale, la mise en beauté peut être réalisée en duo avec une de mes partenaires coiffeuses*"
-            }
-        ],
-        "quote": {
-            "texte": "« Joie, vérité, amour. Les trois sont interchangeables et l’un mène toujours aux autres »",
-            "author": "~Neale Donald Walsch~"
         },
         "asterisk": "*sous réserves des disponibilités.",
         "forfaits": [
@@ -100,14 +79,14 @@
                         "element": "Mise en place du planning jour J"
                     },
                     {
-                        "element": "Maquillage jour J mariée** (1h15)"
+                        "element": "Maquillage jour J mariée (1h15)"
                     },
                     {
                         "element": "3 invitées (2h15) OU 5 invitées (3h30)"
                     }
                 ],
                 "bonus": {
-                    "title": "À la mariée le jour J",
+                    "title": "Pour la mariée le jour J",
                     "items": [
                         {
                             "element": "Rituel soin bonne mine"
@@ -117,8 +96,7 @@
                         }
                     ]
                 },
-                "asterisk1": "*Un minimum de 4 maquillages invitées est demandé afin de bénéficier de ce forfait.",
-                "asterisk2": "Prévoir également des frais de déplacement."
+                "asterisk1": "Prévoir également des frais de déplacement."
             },
             {
                 "id": "N3",
@@ -142,14 +120,14 @@
                         "element": "Mise en place du planning jour J"
                     },
                     {
-                        "element": "Maquillage jour J mariée** (3h)"
+                        "element": "Maquillage jour J mariée (3h)"
                     },
                     {
                         "element": "Pose d'ornements"
                     }
                 ],
                 "bonus": {
-                    "title": "**Offert à la mariée le jour J:",
+                    "title": "Pour la mariée le jour J",
                     "items": [
                         {
                             "element": "Rituel soin bonne mine jour J"
@@ -159,15 +137,15 @@
                         }
                     ]
                 },
-                "asterisk1": "*Forfait sous condition",
-                "asterisk2": "Uniquement valable si le style de coiffure recherché est comme celui des exemples suivants:"
+                "asterisk1": "Prévoir également des frais de déplacement.",
+                "asterisk2": "Valide si la coiffure est semblable aux exemples."
             }
         ]
     },
     "contact": {
         "title": "Contact",
         "field": {
-            "title": "Écrivez-moi !",
+            "title": "Contactez-moi !",
             "nameAndLastName": "Votre prénom et nom de famille",
             "email": "Votre adresse e-mail",
             "text": "Votre message",
@@ -177,6 +155,124 @@
             "submit": "Envoyer",
             "close": "Fermer"
         }
+    },
+    "cv": {
+        "title": "Curriculum vitæ",
+        "section": [
+            {
+                "evenementiel": {
+                    "title": "Événementiel",
+                    "items": [
+                        "Mariages",
+                        "Animations diverses avec Les Coquettes Party, Audrey Coppens",
+                        "Maquilleuse pour La FFBB avec l’équipe de France Féminine de basket-ball pour les photos officielles et leurs partenaires (Adidas, Joker) 2014/2015",
+                        "Maquilleuse sur des congrès ex: de la FNBP à Bordeaux avec l’agence Chaïkana Event (animatrice du congrès Annie Lemoine) , de le BPACA et de la Caisse d’épargne avec l’agence Au-Delà, etc."
+                    ]
+                },
+                "shooting_photos": {
+                    "title": "Shooting Photos",
+                    "items": [
+                        "Pour la marque OXBOW",
+                        "Pour la marque Brandy",
+                        "Pour la marque Diplodocus et Thalassa",
+                        "Pour la marque Jane De Boy",
+                        "Pour le petit salon 38",
+                        "Pour la marque Bénî",
+                        "Pour le Grand Hôtel Intercontinental de Bordeaux avec l’agence Tayloryandell",
+                        "Avec la marque Linvoges pour la collection P/E 2018",
+                        "Avec la marque DDP pour la collection A/H 2017",
+                        "Autre…"
+                    ]
+                },
+                "editoriaux_publications": {
+                    "title": "Éditoriaux / Publications",
+                    "items": [
+                        {
+                            "linkText": "Weddingchicks",
+                            "link": "http://www.weddingchicks.com/2015/04/21/freshly-picked-bridal-brunch/",
+                            "text": "Weddingchicks"
+                        },
+                        {
+                            "linkText": "Weddywood",
+                            "link": "https://weddywood.ru/vesna-v-oktjabre-predsvadebnyj-branch-s-podrugami/",
+                            "text": "Weddywood"
+                        },
+                        {
+                            "linkText": "Mouton Noir",
+                            "link": "https://www.facebook.com/moutonnoirmagazine/photos_stream",
+                            "text": "Mouton Noir"
+                        },
+                        {
+                            "linkText": "Bizart Magazine",
+                            "link": "http://www.bizartmagazine.com/editorials/",
+                            "text": "Bizart Magazine"
+                        }
+                    ]
+                },
+                "teaser": {
+                    "title": "Teaser",
+                    "items": [
+                        {
+                            "text": "Casting France"
+                        },
+                        {
+                            "linkText": "Soirée Divinie",
+                            "link": "http://vimeo.com/62948478",
+                            "text": "Soirée Divinie / organisée par Label Agence @ Boutique « Kulte » Bordeaux"
+                        }
+                    ]
+                },
+                "cours_metrage_audiovisuel": {
+                    "title": "Courts Métrages / Audiovisuel",
+                    "items": [
+                        {
+                            "linkText": "Grand Hôtel Intercontinental",
+                            "link": "https://www.facebook.com/edwardbtaylor.13/videos/10155488995819086/",
+                            "text": "Réalisation d’un film pour le Grand Hôtel Intercontinental de Bordeaux"
+                        },
+                        {
+                            "linkText": "BRISTON",
+                            "link": "https://vimeo.com/bristonwatches/briston-movie-2016",
+                            "text": "Maquilleuse sur le tournage/shooting photo pour la marque BRISTON avec et réalisé par Julien Poly Prod"
+                        }
+                    ]
+                },
+                "television": {
+                    "title": "Télévision",
+                    "items": [
+                        "Maquilleuse pour « Direct star » produit par Shine",
+                        "Maquilleuse sur le plateau télévision « On demande qu’à en rire » pour un prime-time."
+                    ]
+                },
+                "comedie_musicale": {
+                    "title": "Comédie Musicale",
+                    "items": [
+                        "Maquilleuse et coiffeuse sur Adam et Eve « La seconde chance » avec Pascal Obispo.",
+                        "Assistante Coiffeuse sur quelques dates de la tournée Mamma Mia."
+                    ]
+                },
+                "defile": {
+                    "title": "Défilé",
+                    "items": [
+                        "Maquilleuse pour le défilé avec la collaboration de l’école ESMOD à l’occasion du discours de François Fillon pour l’inauguration de l’exposition des 50 ans du CNES au Musée des Art et Métiers.",
+                        "Maquilleuse pour le défilé avec Mossi et Zen « Les momies du Gange », au crématorium du Père-Lachaise."
+                    ]
+                },
+                "concours": {
+                    "title": "Concours",
+                    "items": [
+                        "Participation en juillet 2012 au concours international du World Body Painting festival, catégorie « Special Effect » à Pörtschach en Autriche"
+                    ]
+                },
+                "formations": {
+                    "title": "Formations",
+                    "items": [
+                        "2011-2012 Diplômée en tant que maquilleuse et coiffeuse artistique au Conservatoire Du Maquillage Paris 11 ème.",
+                        "2006-2008 Baccalauréat professionnel esthétique, cosmétique/ parfumerie Bordeaux"
+                    ]
+                }
+            }
+        ]
     },
     "menuNavigation": [
         {
@@ -192,12 +288,8 @@
             "url": "/mariage"
         },
         {
-            "label": "About",
-            "url": "/about"
-        },
-        {
-            "label": "CV",
-            "url": "/cv"
+            "label": "A propos",
+            "url": "/apropos"
         },
         {
             "label": "Contact",
@@ -207,15 +299,15 @@
     "menuSocial": [
         {
             "label": "Instagram",
-            "url": "www.google.com"
+            "url": "https://www.instagram.com/noemielemoine_mua/"
         },
         {
             "label": "Facebook",
-            "url": "/"
+            "url": "https://www.facebook.com/noemielemoineMUA/"
         },
         {
             "label": "LinkedIn",
-            "url": "/"
+            "url": "https://www.linkedin.com/in/noëmie-lemoine-a5589065/"
         }
     ]
 }

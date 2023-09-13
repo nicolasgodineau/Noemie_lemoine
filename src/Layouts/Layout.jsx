@@ -7,7 +7,6 @@ import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 
 export default function Layout({ children, h1, maxWidth }) {
-    console.log("h1:", h1);
     const { t } = useTranslation();
     const theme = useTheme();
     return (
@@ -15,7 +14,6 @@ export default function Layout({ children, h1, maxWidth }) {
             <Header position="sticky" />
             <Container
                 component="main"
-                disableGutters={false}
                 maxWidth={false}
                 sx={{
                     maxWidth: maxWidth,
@@ -23,7 +21,7 @@ export default function Layout({ children, h1, maxWidth }) {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
-                    gap: "3rem",
+                    gap: "3vmax",
                     padding: "1rem 0 3rem 0",
                     backgroundColor: theme.palette.background.default,
                 }}
@@ -33,10 +31,10 @@ export default function Layout({ children, h1, maxWidth }) {
                         component="h1"
                         variant="h1"
                         sx={{
-                            padding: "2rem",
                             fontWeight: 400,
                             textAlign: "center",
                             textTransform: "capitalize",
+                            paddingX: "1rem",
                         }}
                     >
                         {t(h1)}
