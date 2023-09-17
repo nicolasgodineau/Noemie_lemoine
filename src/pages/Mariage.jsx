@@ -12,7 +12,7 @@ import {
 
 import introImg from "../img/mariage/intro.webp";
 import forfait1Img from "../img/mariage/forfait1.webp";
-import forfait2Img from "../img/Group 7.png";
+import forfait2Img from "../img/mariage/forfait2.webp";
 import Forfait from "../components/Forfait.jsx";
 import ForfaitMobile from "../components/ForfaitMobile.jsx";
 import Layout from "../Layouts/Layout.jsx";

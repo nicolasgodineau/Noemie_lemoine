@@ -3,7 +3,7 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Container, Typography } from "@mui/material";
 
-import fleurMobile from "../img/BG_mobile.png";
+import fleur from "../img/mariage/fleur.webp";
 
 export default function ForfaitMobile({ data, img }) {
     const theme = useTheme();
@@ -132,7 +132,7 @@ export default function ForfaitMobile({ data, img }) {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
-                    backgroundImage: `url(${fleurMobile})`,
+                    backgroundImage: `url(${fleur})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
