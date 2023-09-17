@@ -1,3 +1,21 @@
+# Professional Makeup Artist Website
+
+This project involves the creation of a website dedicated to a professional makeup artist. It draws inspiration from a WordPress site I developed a few years ago. Following my training, I wanted to put my skills into practice using React, which gave rise to this project.
+
+## Technologies Used
+
+The website is built on the following technologies:
+
+- React: A modern JavaScript framework used for building the user interface.
+- Material-UI (MUI): A library of user interface components for React, making it easier to create an aesthetically pleasing and responsive design.
+- AOS (Animate On Scroll): A JavaScript library that adds elegant animations when scrolling through the page.
+- i18next: A language management library that enables support for multiple languages on your site.
+
+
+***
+
+
+
 # Site Web pour une Maquilleuse Professionnelle
 
 Ce projet consiste en la création d'un site web dédié à une maquilleuse professionnelle. 
