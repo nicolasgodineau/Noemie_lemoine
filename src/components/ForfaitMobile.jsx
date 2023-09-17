@@ -1,26 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-// Multilingue
-import { useTranslation } from "react-i18next";
+import React from "react";
 
 import { useTheme } from "@mui/material/styles";
-import {
-    Avatar,
-    Box,
-    Button,
-    Container,
-    Typography,
-    useMediaQuery,
-} from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
-import fleur from "../img/mariage/fleur.webp";
 import fleurMobile from "../img/BG_mobile.png";
 
 export default function ForfaitMobile({ data, img }) {
-    const { t } = useTranslation();
     const theme = useTheme();
-
-    // Si il n'y a pas "bonus" dans la description d'un forfait alors on affiche pas la box avec les informations
-    const bonus = data.bonus;
 
     return (
         <Container
@@ -49,7 +35,7 @@ export default function ForfaitMobile({ data, img }) {
                     gap: "0rem",
                 }}
             >
-                <Typography component="p" variant="h2">
+                <Typography component="p" variant="h2" data-aos="fade-up">
                     {data.title}
                 </Typography>
                 <Box
@@ -59,6 +45,8 @@ export default function ForfaitMobile({ data, img }) {
                         gap: "2rem",
                         flexGrow: "1",
                     }}
+                    data-aos="fade-up"
+                    data-aos-delay="200"
                 >
                     <Typography component="p" variant="body1">
                         {data.asterisk2}
@@ -71,13 +59,19 @@ export default function ForfaitMobile({ data, img }) {
                                 fontWeight: "bold",
                                 lineHeight: "1.7rem",
                             }}
+                            data-aos="fade-right"
                         >
                             {data.included}
                         </Typography>
                         <Box sx={{ paddingY: ".5rem" }}>
                             {data.items?.map((item, index) => (
                                 <React.Fragment key={index}>
-                                    <Typography component="p" variant="h6">
+                                    <Typography
+                                        component="p"
+                                        variant="h6"
+                                        data-aos="fade-right"
+                                        data-aos-delay="200"
+                                    >
                                         {item.element}
                                     </Typography>
                                 </React.Fragment>
@@ -92,17 +86,28 @@ export default function ForfaitMobile({ data, img }) {
                                 fontWeight: "bold",
                                 lineHeight: "1.7rem",
                             }}
+                            data-aos="fade-right"
                         >
                             {data.free}
                         </Typography>
-                        <Typography component="p" variant="body2">
+                        <Typography
+                            component="p"
+                            variant="body2"
+                            data-aos="fade-right"
+                            data-aos-delay="200"
+                        >
                             {data.bonus.title}
                         </Typography>
                         {data.bonus !== undefined && (
                             <Box sx={{ paddingY: ".5rem" }}>
                                 {data.bonus.items.map((item, index) => (
                                     <React.Fragment key={index}>
-                                        <Typography component="p" variant="h6">
+                                        <Typography
+                                            component="p"
+                                            variant="h6"
+                                            data-aos="fade-right"
+                                            data-aos-delay="200"
+                                        >
                                             {item.element}
                                         </Typography>
                                     </React.Fragment>
@@ -110,7 +115,12 @@ export default function ForfaitMobile({ data, img }) {
                             </Box>
                         )}
                     </Box>
-                    <Typography component="p" variant="body1">
+                    <Typography
+                        component="p"
+                        variant="body1"
+                        data-aos="fade-right"
+                        data-aos-delay="200"
+                    >
                         {data.asterisk1}
                     </Typography>
                 </Box>
@@ -136,6 +146,8 @@ export default function ForfaitMobile({ data, img }) {
                         objectFit: "contain",
                         padding: "2rem",
                     }}
+                    data-aos="zoom-in"
+                    data-aos-delay="200"
                 />
             </Box>
         </Container>

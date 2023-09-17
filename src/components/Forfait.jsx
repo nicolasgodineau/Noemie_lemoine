@@ -1,28 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-// Multilingue
-import { useTranslation } from "react-i18next";
 
 import { useTheme } from "@mui/material/styles";
-import {
-    Avatar,
-    Box,
-    Button,
-    Container,
-    Typography,
-    useMediaQuery,
-} from "@mui/material";
+import { Avatar, Box, Container, Typography } from "@mui/material";
 
 import fleur from "../img/mariage/fleur.webp";
 
 export default function Forfait({ data, img, direction }) {
-    const { t } = useTranslation();
     const theme = useTheme();
 
     const [element1Height, setElement1Height] = useState(650);
     const element2Ref = useRef(null);
-
-    // Permet de désactiver les useEffect en taille d'écran md
-    const isMd = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
     // Obtien la hauteur du premier élément (par exemple, au chargement de la page)
     useEffect(() => {
@@ -37,9 +24,6 @@ export default function Forfait({ data, img, direction }) {
             element2Ref.current.style.height = `${element1Height}px`;
         }
     }, [element1Height]);
-
-    // Si il n'y a pas "bonus" dans la description d'un forfait alors on affiche pas la box avec les informations
-    const bonus = data.bonus;
 
     return (
         <Container
@@ -58,6 +42,8 @@ export default function Forfait({ data, img, direction }) {
                     flexDirection: "column-reverse",
                 },
             }}
+            data-aos="fade-up"
+            data-aos-delay="500"
         >
             <Box
                 ref={element2Ref}
@@ -96,13 +82,26 @@ export default function Forfait({ data, img, direction }) {
                                 fontWeight: "bold",
                                 lineHeight: "1.7rem",
                             }}
+                            data-aos={
+                                direction === "row" ? "fade-right" : "fade-left"
+                            }
+                            data-aos-delay="200"
                         >
                             {data.included}
                         </Typography>
                         <Box sx={{ paddingY: ".5rem" }}>
                             {data.items?.map((item, index) => (
                                 <React.Fragment key={index}>
-                                    <Typography component="p" variant="h6">
+                                    <Typography
+                                        component="p"
+                                        variant="h6"
+                                        data-aos={
+                                            direction === "row"
+                                                ? "fade-right"
+                                                : "fade-left"
+                                        }
+                                        data-aos-delay="200"
+                                    >
                                         {item.element}
                                     </Typography>
                                 </React.Fragment>
@@ -117,17 +116,37 @@ export default function Forfait({ data, img, direction }) {
                                 fontWeight: "bold",
                                 lineHeight: "1.7rem",
                             }}
+                            data-aos={
+                                direction === "row" ? "fade-right" : "fade-left"
+                            }
+                            data-aos-delay="200"
                         >
                             {data.free}
                         </Typography>
-                        <Typography component="p" variant="body2">
+                        <Typography
+                            component="p"
+                            variant="body2"
+                            data-aos={
+                                direction === "row" ? "fade-right" : "fade-left"
+                            }
+                            data-aos-delay="200"
+                        >
                             {data.bonus.title}
                         </Typography>
                         {data.bonus !== undefined && (
                             <Box sx={{ paddingY: ".5rem" }}>
                                 {data.bonus.items.map((item, index) => (
                                     <React.Fragment key={index}>
-                                        <Typography component="p" variant="h6">
+                                        <Typography
+                                            component="p"
+                                            variant="h6"
+                                            data-aos={
+                                                direction === "row"
+                                                    ? "fade-right"
+                                                    : "fade-left"
+                                            }
+                                            data-aos-delay="200"
+                                        >
                                             {item.element}
                                         </Typography>
                                     </React.Fragment>
@@ -135,7 +154,14 @@ export default function Forfait({ data, img, direction }) {
                             </Box>
                         )}
                     </Box>
-                    <Typography component="p" variant="body1">
+                    <Typography
+                        component="p"
+                        variant="body1"
+                        data-aos={
+                            direction === "row" ? "fade-right" : "fade-left"
+                        }
+                        data-aos-delay="200"
+                    >
                         {data.asterisk2}
                     </Typography>
                 </Box>
@@ -157,7 +183,7 @@ export default function Forfait({ data, img, direction }) {
                 <Avatar
                     src={img}
                     variant="square"
-                    alt=""
+                    alt="Mariage"
                     imgProps={{
                         sx: {
                             objectFit:
@@ -167,14 +193,15 @@ export default function Forfait({ data, img, direction }) {
                     sx={{
                         position: "relative",
                         left: direction === "row" ? "-50%" : undefined,
-                        right: direction == "row-reverse" ? "-50%" : undefined,
+                        right: direction === "row-reverse" ? "-50%" : undefined,
                         height: `calc(${element1Height}px - 10%)`,
                         width: direction === "row" ? "fit-content" : "auto",
                         paddingLeft: direction === "row" ? "70px" : undefined,
                         paddingRight:
-                            direction == "row-reverse" ? "70px" : undefined,
+                            direction === "row-reverse" ? "70px" : undefined,
                         aspectRatio: "0.7",
                     }}
+                    data-aos="zoom-in"
                 />
             </Box>
         </Container>

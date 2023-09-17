@@ -2,14 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import Confetti from "react-dom-confetti";
-import {
-    Button,
-    Modal,
-    Box,
-    Typography,
-    TextField,
-    FormControl,
-} from "@mui/material";
+import { Button, Box, Typography, TextField, FormControl } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
 

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-    Container,
-    Typography,
-    Box,
-    Button,
-    Link as RouterLink,
-} from "@mui/material";
+import { Container, Typography, Box, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Noemie from "../img/Noëmie.webp";
 import Layout from "../Layouts/Layout.jsx";
@@ -63,6 +57,7 @@ export default function About() {
                 >
                     <img
                         src={Noemie}
+                        alt="Noëmie Lemoine"
                         style={{
                             width: "100%",
                             height: "100%",
@@ -70,6 +65,8 @@ export default function About() {
                             objectPosition: "left",
                             aspectRatio: "9/16",
                         }}
+                        data-aos="zoom-in"
+                        data-aos-delay="200"
                     />
                 </Container>
                 <Box
@@ -109,7 +106,6 @@ export default function About() {
                                 }
                                 key={index}
                                 sx={{
-                                    textAlign: "left",
                                     padding: "0.2rem",
                                     paddingX:
                                         index === dataIntro.length - 1
@@ -124,6 +120,7 @@ export default function About() {
                                             ? "italic"
                                             : "normal",
                                 }}
+                                data-aos="fade-left"
                             >
                                 {item.element}
                             </Typography>
@@ -144,7 +141,11 @@ export default function About() {
                             },
                         }}
                     >
-                        <Typography variant="body1">
+                        <Typography
+                            variant="body1"
+                            data-aos="fade-left"
+                            data-aos-delay="200"
+                        >
                             Pour toute demande concernant une prestation
                             maquillage et/ou coiffure, contactez-moi afin
                             d’obtenir un devis sur mesure.
@@ -162,6 +163,8 @@ export default function About() {
                                     width: "100%",
                                 },
                             }}
+                            data-aos="fade-left"
+                            data-aos-delay="200"
                             onClick={openModal}
                         >
                             {t("contact.field.title")}
@@ -181,6 +184,8 @@ export default function About() {
                                     width: "100%",
                                 },
                             }}
+                            data-aos="fade-left"
+                            data-aos-delay="400"
                         >
                             {t("cv.title")}
                         </Button>

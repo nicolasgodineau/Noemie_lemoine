@@ -15,6 +15,9 @@ import "./index.css";
 import theme from "./theme.js";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
+// Annimation
+import "aos/dist/aos.css";
+
 // Componentes & Pages
 import App from "./App";
 

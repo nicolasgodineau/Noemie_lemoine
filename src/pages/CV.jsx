@@ -1,14 +1,5 @@
 import React from "react";
-import {
-    Typography,
-    List,
-    ListItem,
-    ListItemText,
-    Paper,
-    Link,
-    Container,
-    Box,
-} from "@mui/material";
+import { Typography, Link, Container, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import Layout from "../Layouts/Layout.jsx";
@@ -73,6 +64,8 @@ export default function Cv() {
                             flexDirection: "column",
                             gap: "2rem",
                         }}
+                        data-aos="fade-up"
+                        data-aos-delay="200"
                     >
                         <Typography
                             variant="h4"
@@ -96,6 +89,8 @@ export default function Cv() {
                                             textDecoration: "underline",
                                             textUnderlineOffset: "0.2rem",
                                         }}
+                                        data-aos="fade-left"
+                                        data-aos-delay="200"
                                     >
                                         {section[subsectionKey].title}
                                     </Typography>
@@ -125,6 +120,8 @@ export default function Cv() {
                                                             paddingLeft: "1rem",
                                                         },
                                                     }}
+                                                    data-aos="fade-left"
+                                                    data-aos-delay="400"
                                                 >
                                                     {typeof item === "object"
                                                         ? formatTextWithLink(

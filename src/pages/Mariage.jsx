@@ -35,9 +35,6 @@ export default function Mariage() {
     const forfait1 = forfaits[0];
     const forfait2 = forfaits[1];
 
-    const isCustomBreakpoint = useMediaQuery("(max-width: 800px)");
-    console.log("isCustomBreakpoint:", isCustomBreakpoint);
-
     return (
         <Layout h1="services.title" maxWidth={maxWidth}>
             <Typography
@@ -46,6 +43,8 @@ export default function Mariage() {
                 sx={{
                     textAlign: "center",
                 }}
+                data-aos="fade-up"
+                data-aos-delay="200"
             >
                 {t("services.subtitle")}
             </Typography>
@@ -62,6 +61,8 @@ export default function Mariage() {
                         alignItems: "center",
                     },
                 }}
+                data-aos="fade-up"
+                data-aos-delay="200"
             >
                 <Avatar
                     src={introImg}
@@ -83,6 +84,8 @@ export default function Mariage() {
                             aspectRatio: "10/9",
                         },
                     }}
+                    data-aos="zoom-in"
+                    data-aos-delay="200"
                 />
                 <Box
                     sx={{
@@ -95,6 +98,7 @@ export default function Mariage() {
                             maxWidth: "50ch",
                         },
                     }}
+                    data-aos="fade-up"
                 >
                     <Box>
                         {dataIntro.map((item, index) => (
@@ -106,6 +110,7 @@ export default function Mariage() {
                                     textAlign: "left",
                                     padding: "0.2rem",
                                 }}
+                                data-aos="fade-right"
                             >
                                 {item.element}
                             </Typography>
@@ -117,6 +122,7 @@ export default function Mariage() {
                             display: "flex",
                             flexDirection: "column",
                         }}
+                        data-aos="fade-up"
                     >
                         <Typography
                             component="p"
@@ -124,6 +130,8 @@ export default function Mariage() {
                             sx={{
                                 padding: "0.2rem",
                             }}
+                            data-aos="fade-right"
+                            data-aos-delay="200"
                         >
                             {t("services.steps.subtitle")}
                         </Typography>
@@ -137,16 +145,20 @@ export default function Mariage() {
                                         fontWeight: "bolder",
                                         padding: "0.2rem",
                                     }}
+                                    data-aos="fade-right"
+                                    data-aos-delay="300"
                                 >
                                     {item.title}
                                 </Typography>
                                 <Typography
                                     component="p"
                                     variant="body"
-                                    key={index}
+                                    key={index + 100}
                                     sx={{
                                         padding: "0.2rem",
                                     }}
+                                    data-aos="fade-right"
+                                    data-aos-delay="400"
                                 >
                                     {item.description}
                                 </Typography>

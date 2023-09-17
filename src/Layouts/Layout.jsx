@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Container, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Menu from "../components/Menu.jsx";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 
@@ -36,6 +35,7 @@ export default function Layout({ children, h1, maxWidth }) {
                             textTransform: "capitalize",
                             paddingX: "1rem",
                         }}
+                        data-aos="fade-up"
                     >
                         {t(h1)}
                     </Typography>

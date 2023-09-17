@@ -1,6 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { animateScroll as scroll } from "react-scroll";
+import React from "react";
 
 import { Box, Container, Divider, Typography } from "@mui/material";
 // Multilingue
@@ -9,8 +7,6 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 
 import backgroundImage from "../img/Index.webp";
-import Menu from "../components/Menu.jsx";
-import Accueil from "../components/Accueil.jsx";
 import Layout from "../Layouts/Layout.jsx";
 import Portfolio from "../components/Portfolio.jsx";
 

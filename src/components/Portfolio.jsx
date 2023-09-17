@@ -22,6 +22,8 @@ export default function Portfolio() {
                     src={image}
                     alt={`Collage ${index + 1}`}
                     style={{ width: "100%" }}
+                    data-aos="fade-up"
+                    data-aos-delay="100"
                 />
             ))}
         </Container>
