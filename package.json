@@ -6,6 +6,7 @@
         "@emotion/react": "^11.10.6",
         "@emotion/styled": "^11.10.6",
         "@fancyapps/ui": "^5.0.22",
+        "@formspree/react": "^2.5.1",
         "@mui/icons-material": "^5.14.3",
         "@mui/material": "^5.14.5",
         "@testing-library/jest-dom": "^5.17.0",
@@ -18,7 +19,6 @@
         "react-dom-confetti": "^0.2.0",
         "react-hook-form": "^7.43.9",
         "react-i18next": "^13.1.2",
-        "react-intersection-observer": "^9.4.3",
         "react-router-dom": "^6.15.0",
         "react-scripts": "5.0.1",
         "web-vitals": "^2.1.4"

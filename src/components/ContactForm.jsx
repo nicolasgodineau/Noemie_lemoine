@@ -42,13 +42,10 @@ export default function ContactForm({ onClose }) {
             formData.append(key, data[key]);
         });
 
-        fetch(
-            "https://public.herotofu.com/v1/9afc0bf0-2061-11ee-8025-97a9fb2f29da",
-            {
-                method: "POST",
-                body: formData,
-            }
-        ).catch((error) => {
+        fetch("https://formspree.io/f/mleylaok", {
+            method: "POST",
+            body: formData,
+        }).catch((error) => {
             console.log("error:", error);
         });
         setIsFormSubmitted(true); // Met à jour l'état pour indiquer que le formulaire a été soumis
@@ -159,6 +156,27 @@ export default function ContactForm({ onClose }) {
                                 error={Boolean(errors.email)}
                                 helperText={
                                     errors.email && errors.email.message
+                                }
+                                {...field}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="phone"
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                            required: t("contact.field.required"),
+                        }}
+                        render={({ field }) => (
+                            <TextField
+                                label={t("contact.field.phoneNumber")}
+                                variant="filled"
+                                fullWidth
+                                margin="normal"
+                                error={Boolean(errors.phone)}
+                                helperText={
+                                    errors.phone && errors.phone.message
                                 }
                                 {...field}
                             />

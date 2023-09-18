@@ -148,6 +148,7 @@
             "title": "Contactez-moi !",
             "nameAndLastName": "Votre prénom et nom de famille",
             "email": "Votre adresse e-mail",
+            "phoneNumber": "Votre téléphone",
             "text": "Votre message",
             "required": "Champ requis",
             "invalidEmail": "Adresse e-mail invalide",
