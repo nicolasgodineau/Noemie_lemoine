@@ -14,7 +14,7 @@ export default function ContactForm({ onClose }) {
 
     const validate = (values) => {
         const errors = {};
-        const requiredFields = ["name", "email", "message"];
+        const requiredFields = ["name", "email", "message", "phone"];
         requiredFields.forEach((field) => {
             if (!values[field]) {
                 errors[field] = "Required";
@@ -37,12 +37,15 @@ export default function ContactForm({ onClose }) {
     } = useForm({ validate });
 
     const onSubmit = (data) => {
+        // Convertir l'adresse e-mail en minuscules
+        data.email = data.email.toLowerCase();
         const formData = new FormData();
+        console.log("formData:", formData);
         Object.keys(data).forEach((key) => {
             formData.append(key, data[key]);
         });
 
-        fetch("https://formspree.io/f/mleylaok", {
+        fetch(process.env.REACT_APP_FORMSPREE_ENDPOINT, {
             method: "POST",
             body: formData,
         }).catch((error) => {
@@ -205,6 +208,16 @@ export default function ContactForm({ onClose }) {
                             />
                         )}
                     />
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-evenly",
+                            flexDirection: "column",
+                        }}
+                    >
+                        <Confetti active={isConfettiActive} />
+                    </Box>
                     <Button
                         type="submit"
                         sx={{
@@ -226,7 +239,6 @@ export default function ContactForm({ onClose }) {
                     </Button>
                 </Box>
             )}
-            <Confetti active={isConfettiActive} />
         </FormControl>
     );
 }
