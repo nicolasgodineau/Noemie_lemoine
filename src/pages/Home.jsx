@@ -28,7 +28,6 @@ export default function Home() {
                     backgroundPosition: "center",
                     overflowY: "scroll",
                     overflowX: "hidden",
-
                     [theme.breakpoints.down("md")]: {
                         backgroundPosition: "87% 50%",
                     },
@@ -38,10 +37,15 @@ export default function Home() {
                     maxWidth="xxs"
                     disableGutters
                     sx={{
+                        marginLeft: "10%",
+                        marginRight: "auto",
                         height: "100%",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
+                        [theme.breakpoints.down("md")]: {
+                            marginLeft: "auto",
+                        },
                     }}
                 >
                     <Container disableGutters>
