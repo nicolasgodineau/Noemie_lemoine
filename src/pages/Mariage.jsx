@@ -101,20 +101,24 @@ export default function Mariage() {
                     data-aos="fade-up"
                 >
                     <Box>
-                        {dataIntro.map((item, index) => (
-                            <Typography
-                                component="p"
-                                variant="body1"
-                                key={index}
-                                sx={{
-                                    textAlign: "left",
-                                    padding: "0.2rem",
-                                }}
-                                data-aos="fade-right"
-                            >
-                                {item.element}
-                            </Typography>
-                        ))}
+                        {dataIntro.map((item, index) => {
+                            const delay = index * 100;
+                            return (
+                                <Typography
+                                    component="p"
+                                    variant="body1"
+                                    key={index}
+                                    sx={{
+                                        textAlign: "left",
+                                        padding: "0.2rem",
+                                    }}
+                                    data-aos="fade-right"
+                                    data-aos-delay={delay}
+                                >
+                                    {item.element}
+                                </Typography>
+                            );
+                        })}
                     </Box>
                     <Box
                         sx={{
@@ -135,35 +139,38 @@ export default function Mariage() {
                         >
                             {t("services.steps.subtitle")}
                         </Typography>
-                        {dataSteps.map((item, index) => (
-                            <React.Fragment key={index}>
-                                <Typography
-                                    component="p"
-                                    variant="body"
-                                    key={index}
-                                    sx={{
-                                        fontWeight: "bolder",
-                                        padding: "0.2rem",
-                                    }}
-                                    data-aos="fade-right"
-                                    data-aos-delay="300"
-                                >
-                                    {item.title}
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="body"
-                                    key={index + 100}
-                                    sx={{
-                                        padding: "0.2rem",
-                                    }}
-                                    data-aos="fade-right"
-                                    data-aos-delay="400"
-                                >
-                                    {item.description}
-                                </Typography>
-                            </React.Fragment>
-                        ))}
+                        {dataSteps.map((item, index) => {
+                            const delay = index * 300;
+                            return (
+                                <React.Fragment key={index}>
+                                    <Typography
+                                        component="p"
+                                        variant="body"
+                                        key={index}
+                                        sx={{
+                                            fontWeight: "bolder",
+                                            padding: "0.2rem",
+                                        }}
+                                        data-aos="fade-right"
+                                        data-aos-delay={delay}
+                                    >
+                                        {item.title}
+                                    </Typography>
+                                    <Typography
+                                        component="p"
+                                        variant="body"
+                                        key={index + 100}
+                                        sx={{
+                                            padding: "0.2rem",
+                                        }}
+                                        data-aos="fade-right"
+                                        data-aos-delay={delay}
+                                    >
+                                        {item.description}
+                                    </Typography>
+                                </React.Fragment>
+                            );
+                        })}
                     </Box>
                 </Box>
             </Container>

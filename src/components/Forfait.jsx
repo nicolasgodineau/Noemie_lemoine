@@ -90,22 +90,25 @@ export default function Forfait({ data, img, direction }) {
                             {data.included}
                         </Typography>
                         <Box sx={{ paddingY: ".5rem" }}>
-                            {data.items?.map((item, index) => (
-                                <React.Fragment key={index}>
-                                    <Typography
-                                        component="p"
-                                        variant="h6"
-                                        data-aos={
-                                            direction === "row"
-                                                ? "fade-right"
-                                                : "fade-left"
-                                        }
-                                        data-aos-delay="200"
-                                    >
-                                        {item.element}
-                                    </Typography>
-                                </React.Fragment>
-                            ))}
+                            {data.items?.map((item, index) => {
+                                const delay = index * 100;
+                                return (
+                                    <React.Fragment key={index}>
+                                        <Typography
+                                            component="p"
+                                            variant="h6"
+                                            data-aos={
+                                                direction === "row"
+                                                    ? "fade-right"
+                                                    : "fade-left"
+                                            }
+                                            data-aos-delay={delay}
+                                        >
+                                            {item.element}
+                                        </Typography>
+                                    </React.Fragment>
+                                );
+                            })}
                         </Box>
                     </Box>
                     <Box>
@@ -135,22 +138,25 @@ export default function Forfait({ data, img, direction }) {
                         </Typography>
                         {data.bonus !== undefined && (
                             <Box sx={{ paddingY: ".5rem" }}>
-                                {data.bonus.items.map((item, index) => (
-                                    <React.Fragment key={index}>
-                                        <Typography
-                                            component="p"
-                                            variant="h6"
-                                            data-aos={
-                                                direction === "row"
-                                                    ? "fade-right"
-                                                    : "fade-left"
-                                            }
-                                            data-aos-delay="200"
-                                        >
-                                            {item.element}
-                                        </Typography>
-                                    </React.Fragment>
-                                ))}
+                                {data.bonus.items.map((item, index) => {
+                                    const delay = index * 200;
+                                    return (
+                                        <React.Fragment key={index}>
+                                            <Typography
+                                                component="p"
+                                                variant="h6"
+                                                data-aos={
+                                                    direction === "row"
+                                                        ? "fade-right"
+                                                        : "fade-left"
+                                                }
+                                                data-aos-delay={delay}
+                                            >
+                                                {item.element}
+                                            </Typography>
+                                        </React.Fragment>
+                                    );
+                                })}
                             </Box>
                         )}
                     </Box>

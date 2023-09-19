@@ -64,18 +64,21 @@ export default function ForfaitMobile({ data, img }) {
                             {data.included}
                         </Typography>
                         <Box sx={{ paddingY: ".5rem" }}>
-                            {data.items?.map((item, index) => (
-                                <React.Fragment key={index}>
-                                    <Typography
-                                        component="p"
-                                        variant="h6"
-                                        data-aos="fade-right"
-                                        data-aos-delay="200"
-                                    >
-                                        {item.element}
-                                    </Typography>
-                                </React.Fragment>
-                            ))}
+                            {data.items?.map((item, index) => {
+                                const delay = index * 100;
+                                return (
+                                    <React.Fragment key={index}>
+                                        <Typography
+                                            component="p"
+                                            variant="h6"
+                                            data-aos="fade-right"
+                                            data-aos-delay={delay}
+                                        >
+                                            {item.element}
+                                        </Typography>
+                                    </React.Fragment>
+                                );
+                            })}
                         </Box>
                     </Box>
                     <Box>
@@ -100,18 +103,21 @@ export default function ForfaitMobile({ data, img }) {
                         </Typography>
                         {data.bonus !== undefined && (
                             <Box sx={{ paddingY: ".5rem" }}>
-                                {data.bonus.items.map((item, index) => (
-                                    <React.Fragment key={index}>
-                                        <Typography
-                                            component="p"
-                                            variant="h6"
-                                            data-aos="fade-right"
-                                            data-aos-delay="200"
-                                        >
-                                            {item.element}
-                                        </Typography>
-                                    </React.Fragment>
-                                ))}
+                                {data.bonus.items.map((item, index) => {
+                                    const delay = index * 100;
+                                    return (
+                                        <React.Fragment key={index}>
+                                            <Typography
+                                                component="p"
+                                                variant="h6"
+                                                data-aos="fade-right"
+                                                data-aos-delay={delay}
+                                            >
+                                                {item.element}
+                                            </Typography>
+                                        </React.Fragment>
+                                    );
+                                })}
                             </Box>
                         )}
                     </Box>
