@@ -1,4 +1,4 @@
-import { Container, Typography, Button, MenuItem } from "@mui/material";
+import { Container, Typography, Button } from "@mui/material";
 import React from "react";
 import SocialMenu from "./SocialMenu.jsx";
 import { useTheme } from "@mui/material/styles";

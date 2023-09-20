@@ -1,42 +1,12 @@
 import React from "react";
-import { Typography, Link, Container, Box } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { Typography, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Layout from "../Layouts/Layout.jsx";
 
 export default function MentionLegales() {
-    const { t } = useTranslation();
     const theme = useTheme();
 
     const maxWidth = theme.breakpoints.values.lg;
-    const cvData = t("cv", {
-        returnObjects: true,
-    });
-
-    const formatTextWithLink = (item) => {
-        if (item.linkText && item.text && item.text.includes(item.linkText)) {
-            const parts = item.text.split(item.linkText);
-            return (
-                <Typography variant="subtitle1">
-                    {parts[0]}
-                    <Link
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        sx={{
-                            color: "#b3a7f9",
-                            fontWeight: "bold",
-                        }}
-                    >
-                        {item.linkText}
-                    </Link>
-                    {parts[1]}
-                </Typography>
-            );
-        } else {
-            return <Typography variant="subtitle1">{item.text}</Typography>;
-        }
-    };
 
     return (
         <Layout h1="mentionsLegales.title" maxWidth={maxWidth}>
@@ -48,8 +18,6 @@ export default function MentionLegales() {
                     flexDirection: "column",
                     gap: "2rem",
                     alignContent: "top",
-                    /*                     alignItems: "center",
-                    justifyContent: "center", */
                     [theme.breakpoints.down("md")]: {
                         flexDirection: "column",
                         alignItems: "center",
