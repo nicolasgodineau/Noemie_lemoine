@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Layout from "../Layouts/Layout.jsx";
-import ImgsPortfolio from "../components/Portfolio.jsx";
+const ImgsPortfolio = React.lazy(() =>
+    import("../components/ImgsPortfolio.jsx")
+);
 
 export default function Portfolio() {
     const theme = useTheme();
@@ -19,7 +21,9 @@ export default function Portfolio() {
                     justifyContent: "space-between",
                 }}
             >
-                <ImgsPortfolio />
+                <Suspense fallback={<div>Chargement...</div>}>
+                    <ImgsPortfolio />
+                </Suspense>
             </Container>
         </Layout>
     );

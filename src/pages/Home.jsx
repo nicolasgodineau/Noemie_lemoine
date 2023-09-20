@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { Box, Container, Divider, Typography } from "@mui/material";
 // Multilingue
@@ -8,7 +8,9 @@ import { useTheme } from "@mui/material/styles";
 
 import backgroundImage from "../img/Index.webp";
 import Layout from "../Layouts/Layout.jsx";
-import Portfolio from "../components/Portfolio.jsx";
+const ImgsPortfolio = React.lazy(() =>
+    import("../components/ImgsPortfolio.jsx")
+);
 
 export default function Home() {
     const { t } = useTranslation();
@@ -92,11 +94,11 @@ export default function Home() {
                     </Container>
                 </Container>
             </Container>
-            <Box>
-                <Layout h1={null} maxWidth="unset">
-                    <Portfolio />
-                </Layout>
-            </Box>
+            <Layout h1={null} maxWidth="unset">
+                <Suspense fallback={<div>Chargement...</div>}>
+                    <ImgsPortfolio />
+                </Suspense>
+            </Layout>
         </>
     );
 }

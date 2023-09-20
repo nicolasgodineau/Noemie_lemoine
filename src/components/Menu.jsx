@@ -52,6 +52,10 @@ export default function UnifiedMenu() {
         menuNavigation.map((menuItem, index) => (
             <MenuItem
                 component="li"
+                role="menu"
+                aria-labelledby="menubutton"
+                aria-controls="button"
+                aria-label="button navigation"
                 key={index}
                 onClick={handleCloseNavMenu}
                 sx={{
@@ -61,6 +65,8 @@ export default function UnifiedMenu() {
             >
                 <Button
                     component={NavLink}
+                    aria-controls="button"
+                    aria-label="button navigation"
                     to={menuItem.url}
                     key={index}
                     color="primary"

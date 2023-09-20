@@ -31,7 +31,6 @@ export default function ContactModal({ open, onClose }) {
                         width: "400px",
                         display: "flex",
                         flexDirection: "column",
-                        gap: "1rem",
                         backgroundColor: theme.palette.background.default,
                         border: `2px solid ${theme.palette.primary.main}`,
                         boxShadow: theme.shadows[5],
