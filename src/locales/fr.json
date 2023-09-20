@@ -275,6 +275,9 @@
             }
         ]
     },
+    "mentionsLegales": {
+        "title": "Mentions légales"
+    },
     "menuNavigation": [
         {
             "label": "Accueil",

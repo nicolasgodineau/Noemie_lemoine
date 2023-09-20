@@ -12,6 +12,7 @@ import About from "./pages/About.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
 import Cv from "./pages/CV.jsx";
 import BackToTop from "./components/BackToTop.jsx";
+import MentionLegales from "./pages/MentionsLegales.jsx";
 
 export default function App() {
     // Permet le retour en haut de page
@@ -48,6 +49,7 @@ export default function App() {
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/apropos" element={<About />} />
                 <Route path="/cv" element={<Cv />} />
+                <Route path="/mention_legales" element={<MentionLegales />} />
             </Routes>
             <BackToTop />
         </>

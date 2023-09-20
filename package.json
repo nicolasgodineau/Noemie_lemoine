@@ -1,5 +1,6 @@
 {
     "name": "noemie_lemoine",
+    "homepage": "https://www.noemielemoine.com",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

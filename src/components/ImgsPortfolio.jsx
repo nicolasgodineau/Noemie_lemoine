@@ -30,9 +30,9 @@ export default function ImgsPortfolio() {
                             width: "100%",
                             maxWidth: "1280px",
                         }}
-                        /*                         loading="lazy"
+                        loading="lazy"
                         data-aos="fade-up"
-                        data-aos-delay={delay} */
+                        data-aos-delay={delay}
                     />
                 );
             })}

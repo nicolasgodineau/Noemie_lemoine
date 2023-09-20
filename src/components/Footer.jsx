@@ -1,7 +1,8 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Button, MenuItem } from "@mui/material";
 import React from "react";
 import SocialMenu from "./SocialMenu.jsx";
 import { useTheme } from "@mui/material/styles";
+import { NavLink } from "react-router-dom";
 export default function Footer() {
     const theme = useTheme();
     return (
@@ -9,7 +10,6 @@ export default function Footer() {
             component="footer"
             disableGutters={false}
             maxWidth="sm"
-            fixed
             sx={{
                 paddingY: "1rem",
                 display: "flex",
@@ -25,6 +25,24 @@ export default function Footer() {
             }}
         >
             <Typography>Noëmie Lemoine – make-up artist</Typography>
+            <Button
+                component={NavLink}
+                aria-controls="button"
+                aria-label="button navigation"
+                to="/mention_legales"
+                color="primary"
+                sx={{
+                    textTransform: "none",
+                    ":hover": {
+                        bgcolor: "unset",
+                        textDecoration: "underline",
+                        textUnderlineOffset: "0.2rem",
+                        color: `${theme.palette.link} !important`,
+                    },
+                }}
+            >
+                <Typography variant="body1">Mentions légales</Typography>
+            </Button>
             <SocialMenu gap="1rem" />
         </Container>
     );
