@@ -96,35 +96,39 @@ export default function About() {
                             },
                         }}
                     >
-                        {dataIntro.map((item, index) => (
-                            <Typography
-                                component="p"
-                                variant={
-                                    index === dataIntro.length - 1
-                                        ? "h4"
-                                        : "body1"
-                                }
-                                key={index}
-                                sx={{
-                                    padding: "0.2rem",
-                                    paddingX:
+                        {dataIntro.map((item, index) => {
+                            const delay = index * 100;
+                            return (
+                                <Typography
+                                    component="p"
+                                    variant={
                                         index === dataIntro.length - 1
-                                            ? "1rem"
-                                            : "0",
-                                    textAlign:
-                                        index === dataIntro.length - 1
-                                            ? "right"
-                                            : "left",
-                                    fontStyle:
-                                        index === dataIntro.length - 1
-                                            ? "italic"
-                                            : "normal",
-                                }}
-                                data-aos="fade-left"
-                            >
-                                {item.element}
-                            </Typography>
-                        ))}
+                                            ? "h4"
+                                            : "body1"
+                                    }
+                                    key={index}
+                                    sx={{
+                                        padding: "0.2rem",
+                                        paddingX:
+                                            index === dataIntro.length - 1
+                                                ? "1rem"
+                                                : "0",
+                                        textAlign:
+                                            index === dataIntro.length - 1
+                                                ? "right"
+                                                : "left",
+                                        fontStyle:
+                                            index === dataIntro.length - 1
+                                                ? "italic"
+                                                : "normal",
+                                    }}
+                                    data-aos="fade-left"
+                                    data-aos-delay={delay}
+                                >
+                                    {item.element}
+                                </Typography>
+                            );
+                        })}
                     </Box>
                     <Box
                         sx={{

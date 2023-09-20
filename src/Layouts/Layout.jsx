@@ -24,6 +24,7 @@ export default function Layout({ children, h1, maxWidth }) {
                     padding: "1rem 0 3rem 0",
                     backgroundColor: theme.palette.background.default,
                 }}
+                data-aos="fade-up"
             >
                 {h1 !== null ? (
                     <Typography

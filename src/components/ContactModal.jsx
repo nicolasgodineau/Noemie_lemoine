@@ -4,6 +4,7 @@ import { Modal, Box } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
 import ContactForm from "./ContactForm.jsx";
+import SocialMenu from "./SocialMenu.jsx";
 
 export default function ContactModal({ open, onClose }) {
     const theme = useTheme();
@@ -37,6 +38,7 @@ export default function ContactModal({ open, onClose }) {
                     }}
                 >
                     <ContactForm onClose={onClose} />
+                    <SocialMenu />
                 </Box>
             </Modal>
         </Box>

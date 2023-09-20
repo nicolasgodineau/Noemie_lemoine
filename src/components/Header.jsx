@@ -11,7 +11,7 @@ export default function Header({ position }) {
     return (
         <Container
             component="header"
-            disableGutters={true}
+            disableGutters
             maxWidth={false}
             sx={{
                 width: "100%",

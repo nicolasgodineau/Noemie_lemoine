@@ -90,7 +90,7 @@ export default function Cv() {
                                             textUnderlineOffset: "0.2rem",
                                         }}
                                         data-aos="fade-left"
-                                        data-aos-delay="200"
+                                        data-aos-delay="100"
                                     >
                                         {section[subsectionKey].title}
                                     </Typography>
@@ -105,31 +105,36 @@ export default function Cv() {
                                         }}
                                     >
                                         {section[subsectionKey].items.map(
-                                            (item, itemIndex) => (
-                                                <Typography
-                                                    component="li"
-                                                    variant="subtitle1"
-                                                    key={itemIndex}
-                                                    sx={{
-                                                        paddingLeft: "2rem",
-                                                        listStyle:
-                                                            "disc !important",
-                                                        [theme.breakpoints.down(
-                                                            "sm"
-                                                        )]: {
-                                                            paddingLeft: "1rem",
-                                                        },
-                                                    }}
-                                                    data-aos="fade-left"
-                                                    data-aos-delay="400"
-                                                >
-                                                    {typeof item === "object"
-                                                        ? formatTextWithLink(
-                                                              item
-                                                          )
-                                                        : item}
-                                                </Typography>
-                                            )
+                                            (item, index) => {
+                                                const delay = index * 100;
+                                                return (
+                                                    <Typography
+                                                        component="li"
+                                                        variant="subtitle1"
+                                                        key={index}
+                                                        sx={{
+                                                            paddingLeft: "2rem",
+                                                            listStyle:
+                                                                "disc !important",
+                                                            [theme.breakpoints.down(
+                                                                "sm"
+                                                            )]: {
+                                                                paddingLeft:
+                                                                    "1rem",
+                                                            },
+                                                        }}
+                                                        data-aos="fade-left"
+                                                        data-aos-delay={delay}
+                                                    >
+                                                        {typeof item ===
+                                                        "object"
+                                                            ? formatTextWithLink(
+                                                                  item
+                                                              )
+                                                            : item}
+                                                    </Typography>
+                                                );
+                                            }
                                         )}
                                     </Box>
                                 </Box>

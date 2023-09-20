@@ -18,7 +18,7 @@ export default function Home() {
         <>
             <Container
                 component="main"
-                disableGutters={true}
+                disableGutters
                 maxWidth={false}
                 sx={{
                     width: "auto",
@@ -26,8 +26,7 @@ export default function Home() {
                     backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    overflowY: "scroll",
-                    overflowX: "hidden",
+                    overflow: "hidden",
                     [theme.breakpoints.down("md")]: {
                         backgroundPosition: "87% 50%",
                     },

@@ -12,7 +12,7 @@ export default function Portfolio() {
         <Layout h1="portfolio.title" maxWidth={maxWidth}>
             <Container
                 component="section"
-                disableGutters={true}
+                disableGutters
                 maxWidth="lg"
                 sx={{
                     display: "flex",

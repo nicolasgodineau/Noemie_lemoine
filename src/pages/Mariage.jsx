@@ -43,7 +43,7 @@ export default function Mariage() {
                 sx={{
                     textAlign: "center",
                 }}
-                data-aos="fade-up"
+                data-aos="fade"
                 data-aos-delay="200"
             >
                 {t("services.subtitle")}
@@ -61,12 +61,10 @@ export default function Mariage() {
                         alignItems: "center",
                     },
                 }}
-                data-aos="fade-up"
-                data-aos-delay="200"
             >
                 <Avatar
                     src={introImg}
-                    alt="Votre image"
+                    alt="Illustration mariage"
                     variant="square"
                     sx={{
                         width: "40%",
@@ -98,7 +96,6 @@ export default function Mariage() {
                             maxWidth: "50ch",
                         },
                     }}
-                    data-aos="fade-up"
                 >
                     <Box>
                         {dataIntro.map((item, index) => {
@@ -112,7 +109,7 @@ export default function Mariage() {
                                         textAlign: "left",
                                         padding: "0.2rem",
                                     }}
-                                    data-aos="fade-right"
+                                    data-aos="fade-left"
                                     data-aos-delay={delay}
                                 >
                                     {item.element}
@@ -126,7 +123,6 @@ export default function Mariage() {
                             display: "flex",
                             flexDirection: "column",
                         }}
-                        data-aos="fade-up"
                     >
                         <Typography
                             component="p"
@@ -134,7 +130,7 @@ export default function Mariage() {
                             sx={{
                                 padding: "0.2rem",
                             }}
-                            data-aos="fade-right"
+                            data-aos="fade-left"
                             data-aos-delay="200"
                         >
                             {t("services.steps.subtitle")}
@@ -151,7 +147,7 @@ export default function Mariage() {
                                             fontWeight: "bolder",
                                             padding: "0.2rem",
                                         }}
-                                        data-aos="fade-right"
+                                        data-aos="fade-left"
                                         data-aos-delay={delay}
                                     >
                                         {item.title}
@@ -163,7 +159,7 @@ export default function Mariage() {
                                         sx={{
                                             padding: "0.2rem",
                                         }}
-                                        data-aos="fade-right"
+                                        data-aos="fade-left"
                                         data-aos-delay={delay}
                                     >
                                         {item.description}

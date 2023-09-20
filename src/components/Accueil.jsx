@@ -8,7 +8,7 @@ export default function Accueil() {
 
     return (
         <Container
-            disableGutters={true}
+            disableGutters
             maxWidth={false}
             sx={{
                 width: "auto",
