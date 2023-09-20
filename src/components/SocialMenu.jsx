@@ -12,6 +12,7 @@ export default function SocialMenu({ gap, justifyContent }) {
     const { t } = useTranslation();
     const theme = useTheme();
     const menuSocial = t("menuSocial", { returnObjects: true });
+    console.log("menuSocial:", menuSocial);
 
     const iconsList = {
         Instagram: <Instagram />,
@@ -29,7 +30,7 @@ export default function SocialMenu({ gap, justifyContent }) {
                 <IconButton
                     component={NavLink}
                     key={index}
-                    href={menuItem.url}
+                    to={menuItem.url}
                     aria-label={menuItem.label}
                     target="_blank"
                     rel="noopener noreferrer"
