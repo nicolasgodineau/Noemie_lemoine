@@ -1,5 +1,6 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import grey from "@mui/material/colors/grey";
+import { frFR } from "@mui/x-date-pickers/locales";
 let theme = createTheme({
     breakpoints: {
         values: {
@@ -38,6 +39,7 @@ let theme = createTheme({
         nav: "#fafafa7a",
         linkActive: "#01579b",
     },
+    frFR,
 });
 theme = responsiveFontSizes(theme);
 

@@ -3,6 +3,10 @@ import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import Confetti from "react-dom-confetti";
 import { Button, Box, Typography, TextField, FormControl } from "@mui/material";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import { useTheme } from "@mui/material/styles";
 
@@ -14,7 +18,13 @@ export default function ContactForm({ onClose }) {
 
     const validate = (values) => {
         const errors = {};
-        const requiredFields = ["name", "email", "message", "phone"];
+        const requiredFields = [
+            "name",
+            "last_name",
+            "email",
+            "message",
+            "phone",
+        ];
         requiredFields.forEach((field) => {
             if (!values[field]) {
                 errors[field] = "Required";
@@ -37,18 +47,18 @@ export default function ContactForm({ onClose }) {
     } = useForm({ validate });
 
     const onSubmit = (data) => {
-        // Convertir l'adresse e-mail en minuscules
-        data.email = data.email.toLowerCase();
         const formData = new FormData();
-        console.log("formData:", formData);
         Object.keys(data).forEach((key) => {
             formData.append(key, data[key]);
         });
 
-        fetch(process.env.REACT_APP_FORMSPREE_ENDPOINT, {
-            method: "POST",
-            body: formData,
-        }).catch((error) => {
+        fetch(
+            "https://public.herotofu.com/v1/251f3e60-6d06-11ee-8bcd-4fcc9e7e7286",
+            {
+                method: "POST",
+                body: formData,
+            }
+        ).catch((error) => {
             console.log("error:", error);
         });
         setIsFormSubmitted(true); // Met à jour l'état pour indiquer que le formulaire a été soumis
@@ -112,7 +122,6 @@ export default function ContactForm({ onClose }) {
                         gap: 2,
                         padding: "1rem",
                         [theme.breakpoints.down("md")]: {
-                            // Styles pour les écrans de largeur maximale "md" (1090px)
                             height: "100%",
                         },
                     }}
@@ -129,8 +138,25 @@ export default function ContactForm({ onClose }) {
                         }}
                         render={({ field }) => (
                             <TextField
-                                label={t("contact.field.nameAndLastName")}
-                                variant="filled"
+                                label={t("contact.field.name")}
+                                fullWidth
+                                margin="normal"
+                                error={Boolean(errors.name)}
+                                helperText={errors.name && errors.name.message}
+                                {...field}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="last_name"
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                            required: t("contact.field.required"),
+                        }}
+                        render={({ field }) => (
+                            <TextField
+                                label={t("contact.field.lastName")}
                                 fullWidth
                                 margin="normal"
                                 error={Boolean(errors.name)}
@@ -153,7 +179,6 @@ export default function ContactForm({ onClose }) {
                         render={({ field }) => (
                             <TextField
                                 label="Email"
-                                variant="filled"
                                 fullWidth
                                 margin="normal"
                                 error={Boolean(errors.email)}
@@ -174,7 +199,6 @@ export default function ContactForm({ onClose }) {
                         render={({ field }) => (
                             <TextField
                                 label={t("contact.field.phoneNumber")}
-                                variant="filled"
                                 fullWidth
                                 margin="normal"
                                 error={Boolean(errors.phone)}
@@ -185,6 +209,40 @@ export default function ContactForm({ onClose }) {
                             />
                         )}
                     />
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <Controller
+                            name="date"
+                            control={control}
+                            defaultValue={null}
+                            rules={{
+                                required: t("contact.field.required"),
+                            }}
+                            render={({ field }) => (
+                                <DatePicker
+                                    label={t("contact.field.date")}
+                                    {...field}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            // Formate la date au format souhaité, par exemple "DD/MM/YYYY"
+                                            value={
+                                                params.value
+                                                    ? params.value.format(
+                                                          "DD/MM/YYYY"
+                                                      )
+                                                    : ""
+                                            }
+                                        />
+                                    )}
+                                    sx={{ width: "100%" }}
+                                    error={Boolean(errors.date)}
+                                    helperText={
+                                        errors.date && errors.date.message
+                                    }
+                                />
+                            )}
+                        />
+                    </LocalizationProvider>
                     <Controller
                         name="message"
                         control={control}
@@ -195,7 +253,6 @@ export default function ContactForm({ onClose }) {
                         render={({ field }) => (
                             <TextField
                                 label="Message"
-                                variant="filled"
                                 fullWidth
                                 margin="normal"
                                 multiline
