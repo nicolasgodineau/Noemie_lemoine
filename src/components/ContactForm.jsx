@@ -1,18 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
-import Confetti from "react-dom-confetti";
 import { Button, Box, Typography, TextField, FormControl } from "@mui/material";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import { useTheme } from "@mui/material/styles";
 
 export default function ContactForm({ onClose }) {
     const { t } = useTranslation();
-    const [isConfettiActive, setConfettiActive] = useState(false);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const theme = useTheme();
 
@@ -34,8 +28,20 @@ export default function ContactForm({ onClose }) {
             values.email &&
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
         ) {
-            errors.email = "Invalid email address";
+            errors.email = "Adresse mail invalide";
         }
+
+        // Vérification de la date pour s'assurer qu'elle n'est pas dans le passé
+        if (values.date) {
+            const selectedDate = new Date(values.date);
+            const today = new Date(); // Date actuelle
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+                errors.date = "La date ne peut pas être dans le passé";
+            }
+        }
+
         return errors;
     };
 
@@ -52,24 +58,19 @@ export default function ContactForm({ onClose }) {
             formData.append(key, data[key]);
         });
 
-        fetch(
-            "https://public.herotofu.com/v1/251f3e60-6d06-11ee-8bcd-4fcc9e7e7286",
-            {
-                method: "POST",
-                body: formData,
-            }
-        ).catch((error) => {
+        fetch(process.env.REACT_APP_FORMSPREE_ENDPOINT, {
+            method: "POST",
+            body: formData,
+        }).catch((error) => {
             console.log("error:", error);
         });
         setIsFormSubmitted(true); // Met à jour l'état pour indiquer que le formulaire a été soumis
         reset(); // Réinitialise les valeurs du formulaire à leurs valeurs par défaut
-        setConfettiActive(true);
 
         // Réinitialiser l'animation après une courte durée
         setTimeout(() => {
-            setConfettiActive(false);
             onClose(); // Fermer la modal
-        }, 2000); // Durée en millisecondes de l'animation de confettis puis ferme la modale
+        }, 2000); // Durée en millisecondes puis ferme la modale
     };
 
     // Fonction pour mettre à jour les dimensions de l'élément cible
@@ -121,6 +122,11 @@ export default function ContactForm({ onClose }) {
                         flexDirection: "column",
                         gap: 2,
                         padding: "1rem",
+                        [theme.breakpoints.down("sm")]: {
+                            paddingY: "0",
+                            gap: "1vmin",
+                            width: "100%",
+                        },
                         [theme.breakpoints.down("md")]: {
                             height: "100%",
                         },
@@ -129,6 +135,7 @@ export default function ContactForm({ onClose }) {
                     <Typography variant="h6">
                         {t("contact.field.title")}
                     </Typography>
+
                     <Controller
                         name="name"
                         control={control}
@@ -140,10 +147,17 @@ export default function ContactForm({ onClose }) {
                             <TextField
                                 label={t("contact.field.name")}
                                 fullWidth
-                                margin="normal"
+                                margin="none"
+                                size="small"
+                                required
                                 error={Boolean(errors.name)}
                                 helperText={errors.name && errors.name.message}
                                 {...field}
+                                sx={{
+                                    [theme.breakpoints.down("sm")]: {
+                                        margin: "0px",
+                                    },
+                                }}
                             />
                         )}
                     />
@@ -158,10 +172,18 @@ export default function ContactForm({ onClose }) {
                             <TextField
                                 label={t("contact.field.lastName")}
                                 fullWidth
-                                margin="normal"
+                                margin="none"
+                                size="small"
+                                required
                                 error={Boolean(errors.name)}
                                 helperText={errors.name && errors.name.message}
                                 {...field}
+                                sx={{
+                                    [theme.breakpoints.down("sm")]: {
+                                        padding: "0",
+                                        margin: "0px",
+                                    },
+                                }}
                             />
                         )}
                     />
@@ -173,19 +195,26 @@ export default function ContactForm({ onClose }) {
                             required: t("contact.field.required"),
                             pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: t("contact.field.invalideEmail"),
+                                message: t("Adresse mail invalide"),
                             },
                         }}
                         render={({ field }) => (
                             <TextField
-                                label="Email"
+                                label={t("contact.field.email")}
                                 fullWidth
-                                margin="normal"
+                                margin="none"
+                                size="small"
+                                required
                                 error={Boolean(errors.email)}
                                 helperText={
                                     errors.email && errors.email.message
                                 }
                                 {...field}
+                                sx={{
+                                    [theme.breakpoints.down("sm")]: {
+                                        margin: "0px",
+                                    },
+                                }}
                             />
                         )}
                     />
@@ -200,49 +229,19 @@ export default function ContactForm({ onClose }) {
                             <TextField
                                 label={t("contact.field.phoneNumber")}
                                 fullWidth
-                                margin="normal"
-                                error={Boolean(errors.phone)}
-                                helperText={
-                                    errors.phone && errors.phone.message
-                                }
+                                margin="none"
+                                size="small"
+                                required
+                                id="outlined-required"
                                 {...field}
+                                sx={{
+                                    [theme.breakpoints.down("sm")]: {
+                                        margin: "0px",
+                                    },
+                                }}
                             />
                         )}
                     />
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <Controller
-                            name="date"
-                            control={control}
-                            defaultValue={null}
-                            rules={{
-                                required: t("contact.field.required"),
-                            }}
-                            render={({ field }) => (
-                                <DatePicker
-                                    label={t("contact.field.date")}
-                                    {...field}
-                                    renderInput={(params) => (
-                                        <TextField
-                                            {...params}
-                                            // Formate la date au format souhaité, par exemple "DD/MM/YYYY"
-                                            value={
-                                                params.value
-                                                    ? params.value.format(
-                                                          "DD/MM/YYYY"
-                                                      )
-                                                    : ""
-                                            }
-                                        />
-                                    )}
-                                    sx={{ width: "100%" }}
-                                    error={Boolean(errors.date)}
-                                    helperText={
-                                        errors.date && errors.date.message
-                                    }
-                                />
-                            )}
-                        />
-                    </LocalizationProvider>
                     <Controller
                         name="message"
                         control={control}
@@ -254,33 +253,29 @@ export default function ContactForm({ onClose }) {
                             <TextField
                                 label="Message"
                                 fullWidth
-                                margin="normal"
+                                margin="none"
+                                size="small"
+                                required
                                 multiline
-                                rows={4}
+                                rows={2}
                                 error={Boolean(errors.message)}
                                 helperText={
                                     errors.message && errors.message.message
                                 }
                                 {...field}
+                                sx={{
+                                    [theme.breakpoints.down("sm")]: {
+                                        margin: "0px",
+                                    },
+                                }}
                             />
                         )}
                     />
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <Confetti active={isConfettiActive} />
-                    </Box>
                     <Button
                         type="submit"
                         sx={{
                             width: "100%",
                             padding: "12px 44px",
-                            borderRadius: 0,
                             backgroundColor: theme.palette.primary.main,
                             border: `2px solid ${theme.palette.primary.main}`,
                             color: theme.palette.secondary.main,
@@ -288,6 +283,10 @@ export default function ContactForm({ onClose }) {
                                 cursor: "pointer",
                                 color: theme.palette.primary.main,
                                 backgroundColor: theme.palette.secondary.main,
+                            },
+                            [theme.breakpoints.down("sm")]: {
+                                marginTop: "0.5rem",
+                                padding: "0.5rem",
                             },
                         }}
                         variant="text"
