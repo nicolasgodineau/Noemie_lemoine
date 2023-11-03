@@ -5,11 +5,9 @@ export default function ImgsPortfolio() {
         { length: 14 },
         (_, index) => `collage${index + 1}.webp`
     );
-    console.log("imageNames:", imageNames);
     const images = imageNames.map((imageName) =>
         require(`../img/portfolio/${imageName}`)
     );
-    console.log("images:", images);
 
     return (
         <Container

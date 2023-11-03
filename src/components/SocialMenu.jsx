@@ -12,7 +12,6 @@ export default function SocialMenu({ gap, justifyContent }) {
     const { t } = useTranslation();
     const theme = useTheme();
     const menuSocial = t("menuSocial", { returnObjects: true });
-    console.log("menuSocial:", menuSocial);
 
     const iconsList = {
         Instagram: <Instagram />,

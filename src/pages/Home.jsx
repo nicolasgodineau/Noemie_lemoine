@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { Container, Divider, Typography } from "@mui/material";
 // Multilingue
 import { useTranslation } from "react-i18next";
 
