@@ -21,7 +21,7 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "build-and-zip": "npm run build && cd build && zip -r ../build.zip * && cd .."
+        "build-and-zip": "npm run build && cd build && zip -r ../build.zip . && cd .."
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^6.1.2",
