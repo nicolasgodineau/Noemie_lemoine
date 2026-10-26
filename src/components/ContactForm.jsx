@@ -58,7 +58,7 @@ export default function ContactForm({ onClose }) {
             formData.append(key, data[key]);
         });
 
-        fetch(process.env.REACT_APP_FORMSPREE_ENDPOINT, {
+        fetch(import.meta.env.REACT_APP_FORMSPREE_ENDPOINT, {
             method: "POST",
             body: formData,
         }).catch((error) => {

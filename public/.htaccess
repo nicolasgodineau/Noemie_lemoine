@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirige HTTP vers HTTPS (en premier, pour que toutes les pages soient concernées)
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://www.noemielemoine.com/$1 [R=301,L]
+
+# Application React : toute adresse qui n'est pas un fichier réel sert index.html
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule . /index.html [L]

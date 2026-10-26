@@ -1,12 +1,18 @@
 import { Container } from "@mui/material";
 
+// Images du portfolio, indexées par chemin (ex. "../img/portfolio/collage1.webp")
+const portfolioImages = import.meta.glob("../img/portfolio/*.webp", {
+    eager: true,
+    import: "default",
+});
+
 export default function ImgsPortfolio() {
     const imageNames = Array.from(
         { length: 14 },
         (_, index) => `collage${index + 1}.webp`
     );
     const images = imageNames.map((imageName) =>
-        require(`../img/portfolio/${imageName}`)
+        portfolioImages[`../img/portfolio/${imageName}`]
     );
 
     return (

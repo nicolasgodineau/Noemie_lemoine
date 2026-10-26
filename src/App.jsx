@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 
 // Routage
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router";
 
 // Componentes & Pages
 import Mariage from "./pages/Mariage";
