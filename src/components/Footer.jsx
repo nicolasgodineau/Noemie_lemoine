@@ -2,7 +2,7 @@ import { Container, Typography, Button } from "@mui/material";
 import React from "react";
 import SocialMenu from "./SocialMenu.jsx";
 import { useTheme } from "@mui/material/styles";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 export default function Footer() {
     const theme = useTheme();
     return (

@@ -9,6 +9,12 @@ import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js";
 import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 import { Avatar, Box } from "@mui/material";
 
+// Images du portfolio, indexées par chemin (ex. "../img/portfolio/collage1.webp")
+const portfolioImages = import.meta.glob("../img/portfolio/*.webp", {
+    eager: true,
+    import: "default",
+});
+
 const CustomCarousel = () => {
     const containerRef = useRef(null);
 
@@ -69,7 +75,7 @@ const CustomCarousel = () => {
     );
 
     const images = imageNames.map((imageName) => ({
-        src: require(`../img/portfolio/${imageName}`),
+        src: portfolioImages[`../img/portfolio/${imageName}`],
         caption: `Caption de l'image ${imageName}`,
     }));
 
