@@ -6,21 +6,15 @@
     "dependencies": {
         "@emotion/react": "^11.10.6",
         "@emotion/styled": "^11.10.6",
-        "@fancyapps/ui": "^5.0.22",
-        "@formspree/react": "^2.5.1",
         "@mui/icons-material": "^5.14.3",
         "@mui/material": "^5.14.5",
-        "@testing-library/jest-dom": "^5.17.0",
-        "@testing-library/react": "^13.4.0",
-        "@testing-library/user-event": "^13.5.0",
         "aos": "^2.3.4",
         "i18next": "^23.4.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.43.9",
         "react-i18next": "^13.1.2",
-        "react-router": "^7.18.4",
-        "web-vitals": "^2.1.4"
+        "react-router": "^7.18.4"
     },
     "scripts": {
         "start": "vite",
@@ -30,7 +24,6 @@
         "build-and-zip": "npm run build && cd build && zip -r ../build.zip * && cd .."
     },
     "devDependencies": {
-        "@types/aos": "^3.0.4",
         "@vitejs/plugin-react": "^6.1.2",
         "vite": "^8.3.4"
     }
